@@ -1,0 +1,137 @@
+﻿{
+    "date":  "2026-10-16",
+    "unityVersion":  "6000.3.18f1",
+    "scene":  "Assets/Test/Scenes/WetCorridor_Test.unity",
+    "mode":  "Desktop keyboard and mouse",
+    "structural":  {
+                       "scene":  "Assets/Test/Scenes/WetCorridor_Test.unity",
+                       "desktopObject":  "Desktop_Test_Controller",
+                       "desktopChildCount":  2,
+                       "missingScripts":  0,
+                       "referencesValid":  true,
+                       "events":  1,
+                       "currentlyPlaying":  true,
+                       "phase":  "UnsafeExplanation",
+                       "stampCount":  1,
+                       "desktopClicks":  22,
+                       "xrActive":  false
+                   },
+    "compilation":  {
+                        "status":  "completed",
+                        "failed":  false,
+                        "errors":  [
+
+                                   ],
+                        "compilationFailed":  false
+                    },
+    "newSceneRuntimeErrors":  0,
+    "verified":  [
+                     "Mouse delta rotates the camera and the center ray follows the view",
+                     "Center-ray left click activates world-space UI buttons",
+                     "Center-ray left click selects the dry-floor collider",
+                     "Escape releases mouse look; a click reacquires control",
+                     "Hurry branch shows the wet-floor incident and retry",
+                     "Retry restores the decision point without a stamp penalty",
+                     "Safe-first route reaches the reward without an incident",
+                     "Safe action earns one stamp",
+                     "Learning-check incorrect answers preserve the stamp and allow completion",
+                     "Replay preserves the earned stamp"
+                 ],
+    "completedAfterIncorrectAnswers":  {
+                                           "play":  true,
+                                           "state":  "Completed",
+                                           "stamps":  1,
+                                           "retryCount":  1,
+                                           "unsafeAttempts":  1,
+                                           "causeFirstAnswer":  1,
+                                           "transferFirstAnswer":  0,
+                                           "friendPosition":  "(0.65, 0.00, -0.15)",
+                                           "cameraPosition":  "(0.00, 1.62, -5.00)",
+                                           "cameraRotation":  "(0.00, 0.00, 0.00)",
+                                           "rigRotation":  "(0.00, 0.00, 0.00)",
+                                           "cameraParents":  [
+                                                                 {
+                                                                     "name":  "Main Camera",
+                                                                     "rotation":  "(0.00, 0.00, 0.00)"
+                                                                 },
+                                                                 {
+                                                                     "name":  "Camera Offset",
+                                                                     "rotation":  "(0.00, 0.00, 0.00)"
+                                                                 },
+                                                                 {
+                                                                     "name":  "Stationary_XR_Origin",
+                                                                     "rotation":  "(0.00, 0.00, 0.00)"
+                                                                 }
+                                                             ],
+                                           "xrActive":  false,
+                                           "desktop":  {
+                                                           "IsDesktopMode":  true,
+                                                           "MouseLookActive":  true,
+                                                           "HoverTargetName":  "",
+                                                           "ClickCount":  10,
+                                                           "angles":  "(0.00, 0.00)"
+                                                       },
+                                           "timeScale":  1,
+                                           "eventSystems":  1,
+                                           "activeUiButtons":  [
+                                                                   {
+                                                                       "name":  "Replay",
+                                                                       "interactable":  true
+                                                                   }
+                                                               ]
+                                       },
+    "latestRuntimeState":  {
+                               "play":  true,
+                               "state":  "UnsafeExplanation",
+                               "stamps":  1,
+                               "retryCount":  2,
+                               "unsafeAttempts":  3,
+                               "causeFirstAnswer":  0,
+                               "transferFirstAnswer":  0,
+                               "friendPosition":  "(-0.80, 0.08, 1.80)",
+                               "cameraPosition":  "(0.00, 1.62, -5.00)",
+                               "cameraRotation":  "(0.35, 341.42, 0.00)",
+                               "rigRotation":  "(0.00, 0.00, 0.00)",
+                               "cameraParents":  [
+                                                     {
+                                                         "name":  "Main Camera",
+                                                         "rotation":  "(0.35, 341.42, 0.00)"
+                                                     },
+                                                     {
+                                                         "name":  "Camera Offset",
+                                                         "rotation":  "(0.00, 0.00, 0.00)"
+                                                     },
+                                                     {
+                                                         "name":  "Stationary_XR_Origin",
+                                                         "rotation":  "(0.00, 0.00, 0.00)"
+                                                     }
+                                                 ],
+                               "xrActive":  false,
+                               "desktop":  {
+                                               "IsDesktopMode":  true,
+                                               "MouseLookActive":  false,
+                                               "HoverTargetName":  "",
+                                               "ClickCount":  22,
+                                               "angles":  "(-18.58, 0.35)"
+                                           },
+                               "timeScale":  1,
+                               "eventSystems":  1,
+                               "activeUiButtons":  [
+                                                       {
+                                                           "name":  "TryAgain",
+                                                           "interactable":  true
+                                                       }
+                                                   ]
+                           },
+    "package":  {
+                    "PackageBytes":  11384729,
+                    "ArchiveEntries":  1175,
+                    "RequiredAssetsVerified":  4,
+                    "SHA256":  "F48C4299F51021CF750121E6E4334F9A64C7C90CE555B9429CF712906BB8D2B1"
+                },
+    "limitations":  [
+                        "One scenario and one stamp; the three-stamp full ending is not included",
+                        "Actual VR headset/controller hardware has not been tested"
+                    ],
+    "exportNote":  "The Pipeline request timed out while exporting; the completed package was subsequently validated by tar and required asset paths."
+}
