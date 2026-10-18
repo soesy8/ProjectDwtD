@@ -73,7 +73,7 @@ namespace UnityEditor.XR.Interaction.Toolkit.Samples
                         IsRuleEnabled = () => s_ShaderGraphPackageAddRequest == null || s_ShaderGraphPackageAddRequest.IsCompleted,
                         Message = $"[{k_StarterAssetsSampleName}] Shader Graph ({k_ShaderGraphPackageName}) package must be installed for materials used in this sample.",
                         Category = k_Category,
-                        CheckPredicate = () => PackageVersionUtility.IsPackageInstalled(k_ShaderGraphPackageName),
+                        CheckPredicate = () => GetRegisteredPackageVersion(k_ShaderGraphPackageName) != default,
                         FixIt = () =>
                         {
                             s_ShaderGraphPackageAddRequest = Client.Add(k_ShaderGraphPackageName);
@@ -92,7 +92,7 @@ namespace UnityEditor.XR.Interaction.Toolkit.Samples
                         IsRuleEnabled = () => s_InputSystemPackageAddRequest == null || s_InputSystemPackageAddRequest.IsCompleted,
                         Message = $"[{k_StarterAssetsSampleName}] Input System ({k_InputSystemPackageName}) package must be at version {s_RecommendedPackageVersion} or higher to use Project-wide Actions with {k_InputActionAssetName}.",
                         Category = k_Category,
-                        CheckPredicate = () => InputSystem.actions == null || PackageVersionUtility.GetPackageVersion(k_InputSystemPackageName) >= s_RecommendedPackageVersion,
+                        CheckPredicate = () => InputSystem.actions == null || GetRegisteredPackageVersion(k_InputSystemPackageName) >= s_RecommendedPackageVersion,
                         FixIt = () =>
                         {
                             if (s_InputSystemPackageAddRequest == null || s_InputSystemPackageAddRequest.IsCompleted)
@@ -144,6 +144,14 @@ namespace UnityEditor.XR.Interaction.Toolkit.Samples
             {
                 SettingsService.OpenProjectSettings(k_ProjectValidationSettingsPath);
             };
+        }
+
+        // Avoid CoreUtils' synchronous Client.List wait inside an Editor delayCall.
+        // The already registered package snapshot is sufficient for these checks.
+        static PackageVersion GetRegisteredPackageVersion(string packageName)
+        {
+            var package = UnityEditor.PackageManager.PackageInfo.GetAllRegisteredPackages().FirstOrDefault(p => p.name == packageName);
+            return package == null ? default : new PackageVersion(package.version);
         }
 
         static bool TextMeshProEssentialsInstalled()

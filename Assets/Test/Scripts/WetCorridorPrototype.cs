@@ -8,16 +8,16 @@ namespace DwtD.TestScene
 {
     public sealed class WetCorridorPrototype : MonoBehaviour
     {
-        public enum Phase { Title, Choosing, WaitingForPath, UnsafeMotion, UnsafeExplanation, SafeMotion, Reward, CauseCheck, TransferCheck, Completed }
+        public enum Phase { Title, Choosing, WaitingForPath, UnsafeMotion, UnsafeExplanation, SafeMotion, Reward, CauseCheck, TransferCheck, Completed, Observing }
         [Header("Scene references")]
         public Transform friend, leftArm, rightArm, leftLeg, rightLeg, friendShadow;
         public GameObject pathHighlight, causeHighlight, smile, surprisedMouth, stampMark, completionSparkles;
-        public GameObject titlePanel, choicePanel, pathPanel, retryPanel, rewardPanel, questionPanel, completedPanel;
-        public TMP_Text heading, subtitle, bubble, stageCounter, rewardText, questionTitle, questionFeedback, completedText;
+        public GameObject titlePanel, choicePanel, pathPanel, retryPanel, rewardPanel;
+        public TMP_Text heading, subtitle, bubble, stageCounter, rewardText;
         public UnityEngine.UI.Button startButton, hurryButton, stopButton, waveButton, pathButton, retryButton, stampButton;
-        public UnityEngine.UI.Button answerA, answerB, questionNextButton, restartButton;
-        public TMP_Text answerAText, answerBText;
-        public CorridorSymbolGraphic answerAIcon, answerBIcon;
+        [Header("Independent scene features")]
+        public CorridorFinalFeedback finalFeedback;
+        public CorridorThoughtBubble thoughtBubble;
         public AudioSource feedbackAudio;
         public Camera playerCamera;
         public GameObject xrRig;
@@ -27,22 +27,25 @@ namespace DwtD.TestScene
         public int StampCount => HasStamp ? 1 : 0;
         public int RetryCount { get; private set; }
         public int UnsafeAttempts { get; private set; }
-        public int CauseFirstAnswer { get; private set; } = -1;
-        public int TransferFirstAnswer { get; private set; } = -1;
+        public int CauseFirstAnswer => finalFeedback==null ? -1 : finalFeedback.CauseFirstAnswer;
+        public int TransferFirstAnswer => finalFeedback==null ? -1 : finalFeedback.TransferFirstAnswer;
         public bool UsedPathHint { get; private set; }
-        public bool WasGuided => RetryCount > 0 || UsedPathHint;
+        public int HintCount { get; private set; }
+        public bool ObservedWater { get; private set; }
+        public bool WasGuided => RetryCount > 0 || HintCount > 0;
+        public bool CanObserve => CurrentPhase == Phase.Observing || CurrentPhase == Phase.Choosing || CurrentPhase == Phase.WaitingForPath;
+        public CorridorStoryPresentation Story { get; private set; }
 
         readonly Vector3 startPosition = new Vector3(-.55f,0,5.7f);
         Quaternion baseRotation = Quaternion.Euler(0,180,0);
         float gait, walkAmount;
-        bool answered;
         AudioClip positiveTone, warningTone, stampTone;
-        readonly GameObject[] panelCache = new GameObject[8];
+        readonly GameObject[] panelCache = new GameObject[5];
 
         void Awake()
         {
             panelCache[0]=titlePanel; panelCache[1]=choicePanel; panelCache[2]=pathPanel; panelCache[3]=retryPanel;
-            panelCache[4]=rewardPanel; panelCache[5]=questionPanel; panelCache[6]=completedPanel;
+            panelCache[4]=rewardPanel;
             startButton.onClick.AddListener(Begin);
             hurryButton.onClick.AddListener(()=>ChooseUnsafe(true));
             stopButton.onClick.AddListener(StopFriend);
@@ -50,18 +53,17 @@ namespace DwtD.TestScene
             pathButton.onClick.AddListener(ChooseDryPath);
             retryButton.onClick.AddListener(Retry);
             stampButton.onClick.AddListener(CollectStamp);
-            answerA.onClick.AddListener(()=>Answer(0));
-            answerB.onClick.AddListener(()=>Answer(1));
-            questionNextButton.onClick.AddListener(NextQuestion);
-            restartButton.onClick.AddListener(RestartStage);
+            if(finalFeedback!=null) finalFeedback.Initialize(this);
             positiveTone=MakeTone(610,830,.17f); warningTone=MakeTone(300,220,.22f); stampTone=MakeTone(750,1080,.25f);
             ResetActor();
             HasStamp=false; stampMark.SetActive(false); stageCounter.text="0 / 3";
             CurrentPhase=Phase.Title;
             ShowPanel(titlePanel);
-            heading.text="함께 걷는 복도";
-            subtitle.text="친구가 다가오고 있어요. 주변을 먼저 살펴볼까요?";
-            bubble.text="안녕!";
+            heading.text="친구와 교실에 가는 길";
+            subtitle.text="학교 복도에서 시작하는 짧은 이야기";
+            bubble.text="같이 교실 갈래?";
+            Story=gameObject.AddComponent<CorridorStoryPresentation>();
+            Story.Initialize(this);
         }
 
         void Update()
@@ -69,16 +71,17 @@ namespace DwtD.TestScene
             if(!XRSettings.isDeviceActive && Keyboard.current != null)
             {
                 var k=Keyboard.current;
-                if(k.spaceKey.wasPressedThisFrame && CurrentPhase==Phase.Title) Begin();
+                if(k.spaceKey.wasPressedThisFrame) { if(CurrentPhase==Phase.Title) Begin(); else if(CurrentPhase==Phase.Observing) OpenChoices(); }
+                if(k.hKey.wasPressedThisFrame) RequestHint();
                 if(k.digit1Key.wasPressedThisFrame) { if(CurrentPhase==Phase.Choosing) ChooseUnsafe(true); else if(CurrentPhase==Phase.CauseCheck || CurrentPhase==Phase.TransferCheck) Answer(0); }
                 if(k.digit2Key.wasPressedThisFrame) { if(CurrentPhase==Phase.Choosing) StopFriend(); else if(CurrentPhase==Phase.CauseCheck || CurrentPhase==Phase.TransferCheck) Answer(1); }
                 if(k.digit3Key.wasPressedThisFrame && CurrentPhase==Phase.Choosing) ChooseUnsafe(false);
                 if(k.digit4Key.wasPressedThisFrame) ChooseDryPath();
                 if(k.rKey.wasPressedThisFrame) { if(CurrentPhase==Phase.UnsafeExplanation) Retry(); else if(CurrentPhase==Phase.Completed) RestartStage(); }
-                if(k.enterKey.wasPressedThisFrame) { if(CurrentPhase==Phase.Reward) CollectStamp(); else if(answered) NextQuestion(); }
+                if(k.enterKey.wasPressedThisFrame) { if(CurrentPhase==Phase.Reward) CollectStamp(); else NextQuestion(); }
             }
             gait+=Time.unscaledDeltaTime*8*walkAmount;
-            if(CurrentPhase==Phase.Choosing || CurrentPhase==Phase.Title)
+            if(CurrentPhase==Phase.Choosing || CurrentPhase==Phase.Title || CurrentPhase==Phase.Observing)
                 rightArm.localRotation=Quaternion.Euler(0,0,145+Mathf.Sin(Time.unscaledTime*2.8f)*12);
             else rightArm.localRotation=Quaternion.Euler(Mathf.Sin(gait)*22*walkAmount,0,-8);
             leftArm.localRotation=Quaternion.Euler(-Mathf.Sin(gait)*22*walkAmount,0,8);
@@ -91,10 +94,32 @@ namespace DwtD.TestScene
         public void Begin()
         {
             if(CurrentPhase!=Phase.Title) return;
+            CurrentPhase=Phase.Observing; ShowPanel(null);
+            heading.text="친구가 나를 기다리고 있어";
+            subtitle.text="주변의 물건과 친구를 가리켜 살펴볼 수 있어요.";
+            bubble.text="그쪽으로 갈까?";
+        }
+
+        public void OpenChoices()
+        {
+            if(CurrentPhase!=Phase.Observing) return;
             CurrentPhase=Phase.Choosing; ShowPanel(choicePanel);
-            heading.text="친구에게 어떻게 신호를 보낼까요?";
-            subtitle.text="바닥과 친구가 지나올 길을 살펴보세요.";
-            bubble.text="거기로 갈게!";
+            heading.text="친구에게 어떤 신호를 보낼까?";
+            subtitle.text="마음이 정해지면 행동을 선택하세요.";
+            bubble.text="어떻게 갈까?";
+        }
+
+        public void ObserveWater()
+        {
+            if(CanObserve) ObservedWater=true;
+        }
+
+        public void RequestHint()
+        {
+            if(!CanObserve) return;
+            HintCount++;
+            if(CurrentPhase==Phase.WaitingForPath) UsedPathHint=true;
+            Story.ShowHint();
         }
 
         public void StopFriend()
@@ -110,7 +135,6 @@ namespace DwtD.TestScene
         public void ChooseDryPath()
         {
             if(CurrentPhase!=Phase.WaitingForPath) return;
-            UsedPathHint=true;
             CurrentPhase=Phase.SafeMotion; ShowPanel(null); pathHighlight.SetActive(false);
             heading.text="마른 길로 천천히";
             subtitle.text="내가 알려준 길을 따라 친구가 지나가요.";
@@ -153,11 +177,12 @@ namespace DwtD.TestScene
 
         public void Retry()
         {
+            if(CurrentPhase==Phase.Completed) { RestartStage(); return; }
             if(CurrentPhase!=Phase.UnsafeExplanation) return;
             StopAllCoroutines(); RetryCount++; ResetActor();
             CurrentPhase=Phase.Choosing; ShowPanel(choicePanel);
             heading.text="선택하기 전으로 돌아왔어요";
-            subtitle.text="도장은 그대로예요. 주변을 살피고 다시 행동해 보세요.";
+            subtitle.text="서두르지 않아도 괜찮아요. 다시 신호를 보내 보세요.";
             bubble.text="어느 길로 갈까?";
         }
 
@@ -193,74 +218,44 @@ namespace DwtD.TestScene
                 HasStamp=true; stampMark.SetActive(true); stageCounter.text="1 / 3";
                 completionSparkles.SetActive(true); Play(stampTone);
             }
-            CurrentPhase=Phase.CauseCheck;
-            ShowQuestion();
+            if(finalFeedback==null || !finalFeedback.TryBegin()) FinishWithoutFeedback();
         }
 
-        void ShowQuestion()
-        {
-            ShowPanel(questionPanel); answered=false; questionFeedback.text="";
-            answerA.interactable=true; answerB.interactable=true; questionNextButton.gameObject.SetActive(false);
-            if(CurrentPhase==Phase.CauseCheck)
-            {
-                heading.text="무엇을 보고 판단했나요?";
-                subtitle.text="도장과 별개로, 행동의 이유를 떠올려 보세요.";
-                questionTitle.text="친구가 지나갈 길에서 위험했던 것은?";
-                answerAText.text="바닥의 물기"; answerBText.text="친구의 인사";
-                answerAIcon.symbol=CorridorSymbolGraphic.Symbol.Drop; answerBIcon.symbol=CorridorSymbolGraphic.Symbol.Wave;
-            }
-            else
-            {
-                heading.text="다른 장소에서도 생각해 볼까요?";
-                subtitle.text="교실 앞에 물이 흘렀고, 마른 통로가 보이지 않아요.";
-                questionTitle.text="이럴 때는 어떻게 할까요?";
-                answerAText.text="그대로 지나가기"; answerBText.text="멈추고 도움 요청";
-                answerAIcon.symbol=CorridorSymbolGraphic.Symbol.Hurry; answerBIcon.symbol=CorridorSymbolGraphic.Symbol.Hand;
-            }
-            answerAIcon.SetAllDirty(); answerBIcon.SetAllDirty();
-        }
-
+        // The optional component owns its questions, answers, and final explanation.
         public void Answer(int answer)
         {
-            if(answered || (CurrentPhase!=Phase.CauseCheck && CurrentPhase!=Phase.TransferCheck)) return;
-            answered=true;
-            bool correct;
-            if(CurrentPhase==Phase.CauseCheck)
-            {
-                if(CauseFirstAnswer<0) CauseFirstAnswer=answer;
-                correct=answer==0;
-                questionFeedback.text="젖은 바닥에서는 미끄러질 수 있어요.\n지나갈 길을 먼저 확인해요.";
-            }
-            else
-            {
-                if(TransferFirstAnswer<0) TransferFirstAnswer=answer;
-                correct=answer==1;
-                questionFeedback.text="안전한 길이 보이지 않으면 멈추고 성인에게 알려요.\n도장은 그대로이며, 도움을 받아도 괜찮아요.";
-            }
-            Play(correct ? positiveTone : warningTone);
-            answerA.interactable=false; answerB.interactable=false; questionNextButton.gameObject.SetActive(true);
+            if(finalFeedback!=null) finalFeedback.Answer(answer);
         }
 
         public void NextQuestion()
         {
-            if(!answered) return;
-            if(CurrentPhase==Phase.CauseCheck) { CurrentPhase=Phase.TransferCheck; ShowQuestion(); }
-            else if(CurrentPhase==Phase.TransferCheck)
-            {
-                answered=false; CurrentPhase=Phase.Completed; ShowPanel(completedPanel);
-                heading.text="안전하게 함께 도착했어요";
-                subtitle.text="다음에도 주변을 살피고, 필요한 순간 멈춰요.";
-                bubble.text="함께 가자!";
-                completedText.text="주변 살피기 도장  1 / 3\n친구의 안전한 하루를 도왔어요.";
-                Play(stampTone);
-            }
+            if(finalFeedback!=null) finalFeedback.NextQuestion();
         }
+
+        internal void ShowFeedbackPanel(Phase phase,GameObject panel)
+        {
+            CurrentPhase=phase; ShowPanel(null);
+            panel.SetActive(true);
+        }
+
+        internal void FinishWithoutFeedback()
+        {
+            CurrentPhase=Phase.Completed; ShowPanel(retryPanel);
+            heading.text="친구가 무사히 도착했어요";
+            subtitle.text="";
+            bubble.text="덕분에 안전하게 왔어!";
+        }
+
+        internal void PlayAnswerTone(bool correct) => Play(correct ? positiveTone : warningTone);
+        internal void PlayCompletionTone() => Play(stampTone);
 
         public void RestartStage()
         {
+            if(CurrentPhase!=Phase.Completed) return;
             StopAllCoroutines(); ResetActor();
-            CurrentPhase=Phase.Choosing; ShowPanel(choicePanel);
-            heading.text="다시 주변을 살펴볼까요?";
+            ObservedWater=false;
+            CurrentPhase=Phase.Observing; ShowPanel(null);
+            heading.text="친구와 교실에 가는 길";
             subtitle.text="이미 받은 도장은 수첩에 남아 있어요.";
             bubble.text="안녕!";
         }
@@ -275,6 +270,8 @@ namespace DwtD.TestScene
         void ShowPanel(GameObject panel)
         {
             foreach(var p in panelCache) if(p!=null) p.SetActive(p==panel);
+            if(finalFeedback!=null) finalFeedback.HidePanels();
+            if(Story!=null) Story.SyncPhase();
         }
 
         void Play(AudioClip clip) { if(feedbackAudio != null && clip != null) feedbackAudio.PlayOneShot(clip,.16f); }

@@ -30,6 +30,7 @@ namespace DwtD.TestScene
         bool initialized;
         bool skipLookDelta;
         bool wasFocused;
+        bool previousRunInBackground;
         bool selectRequested, escapeRequested;
         InputAction clickAction, escapeAction;
         TrackedPoseDriver poseDriver;
@@ -44,6 +45,8 @@ namespace DwtD.TestScene
 
         void Start()
         {
+            previousRunInBackground=Application.runInBackground;
+            Application.runInBackground=true;
             poseDriver=targetCamera.GetComponent<TrackedPoseDriver>();
             uiModule=FindFirstObjectByType<XRUIInputModule>();
             dotRenderer=laserDot.GetComponent<Renderer>();
@@ -96,7 +99,8 @@ namespace DwtD.TestScene
                 pitch=Mathf.Clamp(pitch-delta.y*sensitivity,-pitchLimit,pitchLimit);
                 targetCamera.transform.rotation=Quaternion.Euler(pitch,yaw,0);
             }
-            UpdateCenterRay();
+            if(MouseLookActive) UpdateCenterRay();
+            else ClearHover();
             if(MouseLookActive && click) SelectCenterTarget();
         }
 
@@ -117,8 +121,11 @@ namespace DwtD.TestScene
             GameObject target=null;
             if(Physics.Raycast(ray,out RaycastHit physicsHit,laserRange))
             {
+                distance=physicsHit.distance;
                 var floorTarget=physicsHit.collider.GetComponentInParent<CorridorActionTarget>();
-                if(floorTarget!=null) { target=floorTarget.gameObject; distance=physicsHit.distance; }
+                var observation=physicsHit.collider.GetComponentInParent<CorridorObservationTarget>();
+                if(floorTarget!=null) target=floorTarget.gameObject;
+                else if(observation!=null) target=observation.gameObject;
             }
             var eventSystem=EventSystem.current;
             if(eventSystem!=null)
@@ -143,8 +150,10 @@ namespace DwtD.TestScene
             }
             if(target!=hovered)
             {
+                if(hovered!=null) hovered.GetComponent<CorridorObservationTarget>()?.SetDesktopHover(false);
                 if(hovered!=null && pointer!=null) ExecuteEvents.Execute(hovered,pointer,ExecuteEvents.pointerExitHandler);
                 hovered=target;
+                if(hovered!=null) hovered.GetComponent<CorridorObservationTarget>()?.SetDesktopHover(true);
                 if(hovered!=null && pointer!=null) ExecuteEvents.Execute(hovered,pointer,ExecuteEvents.pointerEnterHandler);
             }
             Vector3 end=ray.GetPoint(Mathf.Clamp(distance,.4f,laserRange));
@@ -161,6 +170,8 @@ namespace DwtD.TestScene
         {
             if(!IsDesktopMode || hovered==null) return;
             ClickCount++;
+            var observation=hovered.GetComponent<CorridorObservationTarget>();
+            if(observation!=null) { observation.Inspect(); return; }
             var floorTarget=hovered.GetComponent<CorridorActionTarget>();
             if(floorTarget!=null) { floorTarget.Activate(); return; }
             if(pointer==null) return;
@@ -171,6 +182,7 @@ namespace DwtD.TestScene
 
         void OnDisable()
         {
+            ClearHover();
             clickAction?.Disable(); escapeAction?.Disable();
             if(IsDesktopMode) { Cursor.lockState=CursorLockMode.None; Cursor.visible=true; }
             if(centerLaser!=null) centerLaser.enabled=false;
@@ -178,6 +190,14 @@ namespace DwtD.TestScene
         }
 
         void OnEnable() { clickAction?.Enable(); escapeAction?.Enable(); }
-        void OnDestroy() { clickAction?.Dispose(); escapeAction?.Dispose(); }
+        void OnDestroy() { clickAction?.Dispose(); escapeAction?.Dispose(); Application.runInBackground=previousRunInBackground; }
+
+        void ClearHover()
+        {
+            if(hovered==null) return;
+            hovered.GetComponent<CorridorObservationTarget>()?.SetDesktopHover(false);
+            if(pointer!=null) ExecuteEvents.Execute(hovered,pointer,ExecuteEvents.pointerExitHandler);
+            hovered=null;
+        }
     }
 }
