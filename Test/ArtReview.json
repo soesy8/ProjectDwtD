@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-19",
+  "success": true,
+  "scene": "Assets/Test/Scenes/WetCorridor_Test.unity",
+  "phase": "Observing",
+  "shaderErrors": [],
+  "missingMeshes": [],
+  "brokenMaterials": [],
+  "graphicsDevice": "Direct3D11",
+  "renderers": 277,
+  "typographyPreset": "StorybookKoreanInk",
+  "limitations": [
+    "Desktop rendering reviewed. Physical headset, stereo comfort, Android player build and device performance not verified."
+  ]
+}

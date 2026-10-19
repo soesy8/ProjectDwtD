@@ -19,6 +19,8 @@ namespace DwtD.TestScene
         [Range(.02f,.4f)] public float sensitivity=.10f;
         [Range(10,85)] public float pitchLimit=65;
         public float laserRange=20;
+        [Header("Selection visibility")]
+        [Min(.001f)] public float laserWidth=.0045f;
 
         public bool IsDesktopMode { get; private set; }
         public bool MouseLookActive { get; private set; } = true;
@@ -40,7 +42,7 @@ namespace DwtD.TestScene
         Renderer dotRenderer;
         MaterialPropertyBlock dotColor;
         UnityEngine.UI.Button[] buttons;
-        readonly Color idleColor=new Color(.91f,.95f,.85f);
+        readonly Color idleColor=new Color(1f,.67f,.20f);
         readonly Color targetColor=new Color(.25f,.90f,.72f);
 
         void Start()
@@ -69,15 +71,22 @@ namespace DwtD.TestScene
             initialized=true; IsDesktopMode=desktop;
             if(poseDriver!=null) poseDriver.enabled=!desktop;
             if(uiModule!=null) uiModule.enableMouseInput=!desktop;
-            centerLaser.enabled=desktop; laserDot.gameObject.SetActive(desktop);
+            RefreshLaserVisibility();
             if(desktop)
             {
                 targetCamera.transform.position=xrOrigin.position+Vector3.up*1.62f;
-                targetCamera.transform.rotation=Quaternion.identity;
-                targetCamera.fieldOfView=65;
-                yaw=0; pitch=0; SetMouseLook(true);
+                targetCamera.transform.rotation=Quaternion.Euler(CorridorComposition.InitialPitch,0,0);
+                targetCamera.fieldOfView=CorridorComposition.FieldOfView;
+                yaw=0; pitch=CorridorComposition.InitialPitch; SetMouseLook(true);
             }
             else SetMouseLook(false);
+        }
+
+        void RefreshLaserVisibility()
+        {
+            bool visible=initialized && isActiveAndEnabled && IsDesktopMode;
+            if(centerLaser!=null) { centerLaser.enabled=visible;centerLaser.widthMultiplier=laserWidth;centerLaser.numCapVertices=4; }
+            if(laserDot!=null) laserDot.gameObject.SetActive(visible);
         }
 
         void Update()
@@ -160,7 +169,7 @@ namespace DwtD.TestScene
             centerLaser.SetPosition(0,targetCamera.transform.TransformPoint(new Vector3(.065f,-.065f,.18f)));
             centerLaser.SetPosition(1,end);
             Color color=hovered==null?idleColor:targetColor;
-            centerLaser.startColor=new Color(color.r,color.g,color.b,.42f); centerLaser.endColor=color;
+            centerLaser.startColor=new Color(color.r,color.g,color.b,.65f); centerLaser.endColor=color;
             laserDot.position=ray.GetPoint(Mathf.Clamp(distance-.015f,.3f,laserRange));
             laserDot.localScale=Vector3.one*Mathf.Clamp(distance*.005f,.012f,.065f);
             dotColor.SetColor("_BaseColor",color); dotColor.SetColor("_Color",color); dotRenderer.SetPropertyBlock(dotColor);
@@ -189,7 +198,11 @@ namespace DwtD.TestScene
             if(laserDot!=null) laserDot.gameObject.SetActive(false);
         }
 
-        void OnEnable() { clickAction?.Enable(); escapeAction?.Enable(); }
+        void OnEnable()
+        {
+            clickAction?.Enable(); escapeAction?.Enable();
+            if(initialized) { RefreshLaserVisibility();SetMouseLook(MouseLookActive); }
+        }
         void OnDestroy() { clickAction?.Dispose(); escapeAction?.Dispose(); Application.runInBackground=previousRunInBackground; }
 
         void ClearHover()

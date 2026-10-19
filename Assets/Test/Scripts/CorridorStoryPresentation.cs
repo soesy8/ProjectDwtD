@@ -7,18 +7,19 @@ namespace DwtD.TestScene
     // Extends the existing scene in place. All additions are owned by the prototype.
     public sealed class CorridorStoryPresentation : MonoBehaviour
     {
-        readonly Color ink=new Color(.10f,.20f,.24f);
-        readonly Color paper=new Color(1f,.985f,.94f);
+        readonly Color ink=CorridorUITheme.Ink;
         WetCorridorPrototype owner;
         TMP_FontAsset font;
-        GameObject exploreRoot, utilityRoot, desktopGuide;
+        GameObject exploreRoot, utilityRoot;
         CorridorThoughtBubble thoughts;
-        CorridorObservationTarget waterTarget, friendTarget;
+        CorridorObservationTarget waterTarget, friendTarget, cleaningTarget, mopTarget;
         Material outlineMaterial, sparkleMaterial;
         LineRenderer[] sparkles;
         WetCorridorPrototype.Phase lastPhase;
         int hintLevel;
         float initializedAt;
+        readonly Vector3[] thoughtCorners=new Vector3[4];
+        RectTransform situationHeader;
 
         public bool CanObserve => owner!=null && owner.CanObserve;
         public string ThoughtText => thoughts==null?"":thoughts.ThoughtText;
@@ -29,6 +30,7 @@ namespace DwtD.TestScene
             owner=controller;
             thoughts=owner.thoughtBubble;
             font=owner.heading.font;
+            situationHeader=owner.heading.GetComponentInParent<Canvas>(true).transform as RectTransform;
             initializedAt=Time.unscaledTime;
             StyleExistingUI();
             CreateStoryControls();
@@ -39,13 +41,11 @@ namespace DwtD.TestScene
         void StyleExistingUI()
         {
             foreach(var text in FindObjectsByType<TMP_Text>(FindObjectsInactive.Include,FindObjectsSortMode.None))
-                if(text.GetComponentInParent<Canvas>()!=null) text.color=ink;
-            var buttons=new[] { owner.startButton,owner.hurryButton,owner.stopButton,owner.waveButton,
-                owner.pathButton,owner.retryButton,owner.stampButton };
-            foreach(var button in buttons) StyleButton(button,paper);
-            if(owner.finalFeedback!=null)
-                foreach(var button in new[] { owner.finalFeedback.answerA,owner.finalFeedback.answerB,
-                    owner.finalFeedback.questionNextButton,owner.finalFeedback.restartButton }) StyleButton(button,paper);
+                if(text.GetComponentInParent<Canvas>(true)!=null)
+                {
+                    text.color=ink;
+                    if(owner.storybookTextMaterial!=null && text.font==font) text.fontSharedMaterial=owner.storybookTextMaterial;
+                }
             // Choices share a visual treatment; color does not reveal the safe answer.
             SetLabel(owner.hurryButton,"1   빨리 와!");
             SetLabel(owner.stopButton,"2   잠깐 멈춰!");
@@ -53,6 +53,13 @@ namespace DwtD.TestScene
             SetLabel(owner.startButton,"친구 만나러 가기   ·   Space");
             SetLabel(owner.pathButton,"4   마른 길 가리키기");
             SetLabel(owner.retryButton,"다시 신호 보내기   ·   R");
+            CorridorUITheme.Apply(owner);
+            var buttons=new[] { owner.startButton,owner.hurryButton,owner.stopButton,owner.waveButton,
+                owner.pathButton,owner.retryButton,owner.stampButton };
+            foreach(var button in buttons) CorridorUITheme.StyleButton(button);
+            if(owner.finalFeedback!=null)
+                foreach(var button in new[] { owner.finalFeedback.answerA,owner.finalFeedback.answerB,
+                    owner.finalFeedback.questionNextButton,owner.finalFeedback.restartButton }) CorridorUITheme.StyleButton(button);
             foreach(var button in new[]{owner.hurryButton,owner.stopButton,owner.waveButton})
             {
                 var label=button.GetComponentInChildren<TMP_Text>(true);
@@ -60,37 +67,7 @@ namespace DwtD.TestScene
             }
             // Keep the existing scene layout and references, and improve contrast.
             owner.heading.fontStyle=FontStyles.Bold;
-            owner.subtitle.color=new Color(.23f,.33f,.36f);
-            owner.bubble.color=ink;
-            owner.bubble.fontSize=44;
-            var speech=owner.bubble.transform.parent.GetComponent<RectTransform>();
-            if(speech!=null)
-            {
-                speech.sizeDelta=new Vector2(530,125);
-                owner.bubble.rectTransform.sizeDelta=new Vector2(500,110);
-            }
-        }
-
-        void StyleButton(UnityEngine.UI.Button button,Color fill)
-        {
-            var oldImage=button.GetComponent<UnityEngine.UI.Image>();
-            if(oldImage!=null) { oldImage.enabled=false; oldImage.raycastTarget=false; }
-            var surface=Rect("ComicButtonSurface",button.transform,Vector2.zero,Vector2.zero);
-            surface.anchorMin=Vector2.zero; surface.anchorMax=Vector2.one;
-            surface.sizeDelta=Vector2.zero; surface.SetAsFirstSibling();
-            var shape=surface.gameObject.AddComponent<CorridorBubbleGraphic>();
-            shape.color=fill; shape.borderColor=ink; shape.borderWidth=3; shape.cornerRadius=26;
-            shape.raycastTarget=true;
-            button.targetGraphic=shape;
-            var colors=button.colors;
-            colors.normalColor=Color.white;
-            colors.highlightedColor=new Color(.84f,1f,.96f);
-            colors.pressedColor=new Color(.65f,.89f,.82f);
-            colors.selectedColor=Color.white;
-            colors.disabledColor=new Color(.7f,.74f,.73f,.6f);
-            button.colors=colors;
-            foreach(var text in button.GetComponentsInChildren<TMP_Text>(true)) text.color=ink;
-            foreach(var icon in button.GetComponentsInChildren<CorridorSymbolGraphic>(true)) icon.color=ink;
+            owner.subtitle.color=new Color(.35f,.29f,.23f);
         }
 
         static void SetLabel(UnityEngine.UI.Button button,string text)
@@ -126,6 +103,7 @@ namespace DwtD.TestScene
             var rect=Rect(name,parent,size,position);
             var text=rect.gameObject.AddComponent<TextMeshProUGUI>();
             text.font=font; text.text=value; text.fontSize=fontSize; text.color=ink;
+            if(owner.storybookTextMaterial!=null) text.fontSharedMaterial=owner.storybookTextMaterial;
             text.alignment=TextAlignmentOptions.Center; text.raycastTarget=false;
             text.textWrappingMode=TextWrappingModes.Normal;
             return text;
@@ -135,29 +113,23 @@ namespace DwtD.TestScene
         {
             var rect=Rect(name,parent,size,position);
             var button=rect.gameObject.AddComponent<UnityEngine.UI.Button>();
-            StyleButton(button,paper);
             var text=Text("Label",rect,label,size-new Vector2(32,12),Vector2.zero,32);
             text.fontStyle=FontStyles.Bold;
+            CorridorUITheme.StyleButton(button);
             button.onClick.AddListener(action);
             return button;
         }
 
         void CreateStoryControls()
         {
-            var explore=CanvasRoot("Observe_Then_Act",new Vector3(0,.37f,-1.15f),new Vector2(1040,195));
+            var explore=CanvasRoot("Observe_Then_Act",Vector3.zero,new Vector2(250,250));
             exploreRoot=explore.gameObject;
-            Text("ObserveInstruction",explore,"가리켜서 살펴보고, 준비되면 친구에게 신호를 보내요.",new Vector2(1040,56),new Vector2(0,68),28);
-            Button("OpenSignalChoices",explore,"친구에게 신호 보내기   ·   Space",new Vector2(840,115),new Vector2(0,-18),owner.OpenChoices);
-            var utility=CanvasRoot("Story_Hint",new Vector3(1.72f,.78f,-.8f),new Vector2(440,110));
+            Button("OpenSignalChoices",explore,"행동 선택",new Vector2(250,250),Vector2.zero,owner.OpenChoices);
+            CorridorComposition.PlacePanel(explore,owner.playerCamera,new Vector2(.86f,.16f),.19f);
+            var utility=CanvasRoot("Story_Hint",Vector3.zero,new Vector2(240,84));
             utilityRoot=utility.gameObject;
-            Button("Hint",utility,"힌트 보기   ·   H",new Vector2(430,100),Vector2.zero,owner.RequestHint);
-            var desktop=FindFirstObjectByType<DesktopTestControls>();
-            if(desktop!=null)
-            {
-                var tips=CanvasRoot("Controls_Guide",new Vector3(0,2.31f,-1.10f),new Vector2(1360,45));
-                desktopGuide=tips.gameObject;
-                Text("Controls",tips,"마우스로 둘러보기  ·  조준 후 클릭  ·  Esc 마우스 해제",new Vector2(1360,45),Vector2.zero,24);
-            }
+            Button("Hint",utility,"힌트 · H",new Vector2(240,84),Vector2.zero,owner.RequestHint);
+            CorridorComposition.PlacePanel(utility,owner.playerCamera,new Vector2(.86f,.315f),.052f);
         }
 
         void CreateObservationTargets()
@@ -172,18 +144,32 @@ namespace DwtD.TestScene
             sparkleMaterial.color=new Color(.94f,1f,1f);
 
             var water=new GameObject("Observe_Water");
-            water.transform.SetParent(transform,false); water.transform.position=new Vector3(-.45f,.075f,2.1f);
-            var waterCollider=water.AddComponent<BoxCollider>(); waterCollider.size=new Vector3(2.8f,.10f,1.48f);
+            water.transform.SetParent(transform,false); water.transform.position=CorridorComposition.WaterCenter;
+            var waterCollider=water.AddComponent<BoxCollider>(); waterCollider.size=new Vector3(2.65f,.10f,2.3f);
             waterTarget=water.AddComponent<CorridorObservationTarget>();
             waterTarget.clue=CorridorObservationTarget.Clue.Water; waterTarget.story=this;
-            waterTarget.outline=Loop("Water_Contour",water.transform,new Vector2(1.38f,.72f),.032f,true);
+            waterTarget.outline=Loop("Water_Contour",water.transform,CorridorComposition.WaterRadius,.025f,true);
 
             var person=new GameObject("Observe_Friend");
             person.transform.SetParent(owner.friend,false);
-            var personCollider=person.AddComponent<BoxCollider>(); personCollider.center=new Vector3(0,.9f,0); personCollider.size=new Vector3(1.1f,1.9f,.7f);
+            var personCollider=person.AddComponent<BoxCollider>(); personCollider.center=new Vector3(0,1.15f,0); personCollider.size=new Vector3(1.35f,2.35f,.95f);
             friendTarget=person.AddComponent<CorridorObservationTarget>();
             friendTarget.clue=CorridorObservationTarget.Clue.Friend; friendTarget.story=this;
             friendTarget.outline=Loop("Friend_Focus",person.transform,new Vector2(.68f,.45f),.026f,false);
+
+            if(owner.cleaningToolsClue!=null)
+            {
+                var tools=new GameObject("Observe_CleaningTools");tools.transform.SetParent(owner.cleaningToolsClue.Find("Open_Bucket"),false);
+                var collider=tools.AddComponent<BoxCollider>();collider.center=new Vector3(0,.42f,0);collider.size=new Vector3(.85f,.88f,.85f);
+                cleaningTarget=tools.AddComponent<CorridorObservationTarget>();cleaningTarget.clue=CorridorObservationTarget.Clue.CleaningTools;cleaningTarget.story=this;
+                cleaningTarget.outline=Loop("Cleaning_Tools_Focus",tools.transform,new Vector2(.43f,.39f),.025f,false);
+                var mop=owner.cleaningToolsClue.Find("String_Mop");
+                var mopObservation=new GameObject("Observe_Mop");mopObservation.transform.SetParent(mop,false);
+                var mopCollider=mopObservation.AddComponent<BoxCollider>();mopCollider.center=new Vector3(0,.79f,0);mopCollider.size=new Vector3(.58f,1.62f,.60f);
+                mopTarget=mopObservation.AddComponent<CorridorObservationTarget>();mopTarget.clue=CorridorObservationTarget.Clue.CleaningTools;mopTarget.story=this;
+                mopTarget.outline=Loop("Mop_Focus",owner.cleaningToolsClue,new Vector2(.35f,.36f),.025f,false);
+                mopTarget.outline.transform.position=new Vector3(mop.position.x,.045f,mop.position.z);
+            }
 
             var vfx=new GameObject("Water_Sparkles"); vfx.transform.SetParent(transform,false);
             sparkles=new LineRenderer[6];
@@ -191,7 +177,7 @@ namespace DwtD.TestScene
             {
                 var line=new GameObject("Water_Glint_"+i).AddComponent<LineRenderer>();
                 line.transform.SetParent(vfx.transform,false);
-                line.transform.position=new Vector3(-1.30f+i*.33f,.10f,1.88f+(i%2)*.43f);
+                line.transform.position=CorridorComposition.WaterCenter+new Vector3(-.78f+i*.30f,.025f,-.42f+(i%2)*.80f);
                 line.useWorldSpace=false; line.sharedMaterial=sparkleMaterial; line.widthMultiplier=.024f;
                 line.positionCount=5;
                 line.SetPositions(new[]{new Vector3(-.085f,0,0),new Vector3(.085f,0,0),Vector3.zero,new Vector3(0,0,-.105f),new Vector3(0,0,.105f)});
@@ -225,21 +211,27 @@ namespace DwtD.TestScene
             waterTarget.gameObject.SetActive(CanObserve);
             friendTarget.gameObject.SetActive(CanObserve);
             waterTarget.outline.enabled=false; friendTarget.outline.enabled=false;
-            bool show=lastPhase!=WetCorridorPrototype.Phase.Title && lastPhase!=WetCorridorPrototype.Phase.Reward && lastPhase!=WetCorridorPrototype.Phase.CauseCheck && lastPhase!=WetCorridorPrototype.Phase.TransferCheck && lastPhase!=WetCorridorPrototype.Phase.Completed;
+            if(cleaningTarget!=null) { cleaningTarget.gameObject.SetActive(CanObserve);cleaningTarget.outline.enabled=false; }
+            if(mopTarget!=null) { mopTarget.gameObject.SetActive(CanObserve);mopTarget.outline.enabled=false; }
+            situationHeader.gameObject.SetActive(false);
+            owner.stageCounter.GetComponentInParent<Canvas>(true).gameObject.SetActive(lastPhase==WetCorridorPrototype.Phase.Reward || lastPhase==WetCorridorPrototype.Phase.Completed);
+            bool show=lastPhase!=WetCorridorPrototype.Phase.Reward && lastPhase!=WetCorridorPrototype.Phase.CauseCheck && lastPhase!=WetCorridorPrototype.Phase.TransferCheck && lastPhase!=WetCorridorPrototype.Phase.Completed;
             SetLabel(owner.retryButton,lastPhase==WetCorridorPrototype.Phase.Completed?"다시 둘러보기   ·   R":"다시 신호 보내기   ·   R");
             if(!CanObserve && lastPhase!=WetCorridorPrototype.Phase.UnsafeMotion && lastPhase!=WetCorridorPrototype.Phase.UnsafeExplanation)
                 owner.causeHighlight.SetActive(false);
             string message="";
             switch(lastPhase)
             {
-                case WetCorridorPrototype.Phase.Observing: message="친구랑 같이\n교실에 가야지."; break;
+                case WetCorridorPrototype.Phase.Title:
+                case WetCorridorPrototype.Phase.Observing: message="어떻게\n지나갈까?"; break;
                 case WetCorridorPrototype.Phase.Choosing: message=owner.ObservedWater?"바닥이 젖었네.\n어떻게 알려주지?":"친구가 이쪽으로\n오려고 하네."; break;
                 case WetCorridorPrototype.Phase.WaitingForPath: message="친구가 멈췄어.\n어느 길로 안내할까?"; break;
                 case WetCorridorPrototype.Phase.UnsafeMotion: message="내 신호를 보고\n친구가 오고 있어."; break;
                 case WetCorridorPrototype.Phase.UnsafeExplanation: message="젖은 바닥을\n못 봤구나."; break;
                 case WetCorridorPrototype.Phase.SafeMotion: message="물기가 없는 쪽으로\n잘 오고 있어!"; break;
             }
-            if(thoughts!=null) thoughts.Show("내 생각",message,show);
+            if(thoughts!=null) thoughts.Show("속마음",message,show);
+            var hands=owner.playerCamera.GetComponentInChildren<CorridorFirstPersonHands>();if(hands!=null) hands.Refresh();
         }
 
         public void Inspect(CorridorObservationTarget.Clue clue)
@@ -252,8 +244,9 @@ namespace DwtD.TestScene
                 owner.ObserveWater();
                 message="바닥이 젖었네.\n미끄럽겠는데?";
             }
+            else if(clue==CorridorObservationTarget.Clue.CleaningTools) message="청소 중인가 봐.\n바닥이 젖었네.";
             else message=owner.CurrentPhase==WetCorridorPrototype.Phase.WaitingForPath?"내가 알려줄 길을\n기다리고 있네.":"친구가 나를 보느라\n발밑을 못 보고 있네.";
-            if(thoughts!=null) thoughts.Show("내 생각 · 살펴보기",message,true);
+            if(thoughts!=null) thoughts.Show("속마음",message,true);
         }
 
         public void ShowHint()
@@ -271,22 +264,66 @@ namespace DwtD.TestScene
                 owner.causeHighlight.SetActive(true);
                 message=hintLevel==1?"친구가 지나올\n바닥을 살펴볼까?":"먼저 멈추게 하고\n마른 길을 알려주자.";
             }
-            if(thoughts!=null) thoughts.Show("내 생각 · 힌트",message,true);
+            if(thoughts!=null) thoughts.Show("속마음 · 힌트",message,true);
         }
 
         void Update()
         {
             if(owner==null || sparkles==null) return;
             float t=Time.unscaledTime-initializedAt;
-            float speechDistance=Vector3.Distance(owner.playerCamera.transform.position,owner.bubble.transform.parent.position);
-            owner.bubble.transform.parent.localScale=Vector3.one*Mathf.Clamp(speechDistance*.0005f,.0028f,.0056f);
-            if(desktopGuide!=null) desktopGuide.SetActive(!UnityEngine.XR.XRSettings.isDeviceActive);
             for(int i=0;i<sparkles.Length;i++)
             {
                 sparkles[i].enabled=CanObserve;
                 float scale=.65f+.25f*Mathf.Sin(t*1.8f+i*1.4f);
                 sparkles[i].transform.localScale=Vector3.one*scale;
             }
+        }
+
+        void LateUpdate()=>RefreshSpeechLayout();
+
+        public void RefreshSpeechLayout()
+        {
+            if(owner==null || owner.playerCamera==null) return;
+            var camera=owner.playerCamera;
+            var speech=owner.bubble.transform.parent as RectTransform;
+            var position=owner.friend.position+Vector3.up*owner.friendSpeechHeight;
+            var anchor=camera.WorldToViewportPoint(position);
+            if(speech==null || anchor.z<=camera.nearClipPlane) return;
+            float viewHeight=camera.orthographic?camera.orthographicSize*2:2*anchor.z*Mathf.Tan(camera.fieldOfView*.5f*Mathf.Deg2Rad);
+            const float heightInView=.052f;
+            speech.localScale=Vector3.one*(viewHeight*heightInView/Mathf.Max(1,speech.rect.height));
+            // Keep the dialogue above its speaker; shift only when another visible UI overlaps.
+            if(anchor.x>.08f && anchor.x<.92f && anchor.y>0 && anchor.y<1.1f)
+            {
+                anchor.y=Mathf.Min(anchor.y,.945f);
+                float halfWidth=heightInView*speech.rect.width/Mathf.Max(1,speech.rect.height)/camera.aspect*.5f;
+                var speechBounds=new Rect(anchor.x-halfWidth,anchor.y-heightInView*.5f,halfWidth*2,heightInView);
+                if(thoughts!=null && thoughts.bubbleRoot.gameObject.activeInHierarchy)
+                {
+                    thoughts.FollowView();var thoughtBounds=ViewportBounds(thoughts.bubbleRoot,camera);
+                    if(speechBounds.Overlaps(thoughtBounds))
+                        anchor.x=thoughtBounds.center.x<.5f?Mathf.Clamp(thoughtBounds.xMax+halfWidth+.025f,.42f,.78f):Mathf.Clamp(thoughtBounds.xMin-halfWidth-.025f,.28f,.68f);
+                }
+                speechBounds.x=anchor.x-halfWidth;
+                if(situationHeader!=null && situationHeader.gameObject.activeInHierarchy)
+                {
+                    var headerBounds=ViewportBounds(situationHeader,camera);
+                    if(speechBounds.Overlaps(headerBounds)) anchor.y=headerBounds.yMin-heightInView*.5f-.025f;
+                }
+                position=camera.ViewportToWorldPoint(anchor);
+            }
+            speech.SetPositionAndRotation(position,camera.transform.rotation);
+        }
+
+        Rect ViewportBounds(RectTransform rect,Camera camera)
+        {
+            rect.GetWorldCorners(thoughtCorners);
+            Vector2 min=Vector2.one*float.MaxValue,max=Vector2.one*float.MinValue;
+            foreach(var corner in thoughtCorners)
+            {
+                var point=(Vector2)camera.WorldToViewportPoint(corner);min=Vector2.Min(min,point);max=Vector2.Max(max,point);
+            }
+            return UnityEngine.Rect.MinMaxRect(min.x-.008f,min.y-.008f,max.x+.008f,max.y+.008f);
         }
 
         void OnDestroy()

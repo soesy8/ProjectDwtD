@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-19",
+  "success": true,
+  "failure": null,
+  "checks": [
+    "Situation header stays hidden while observing at aspect 1.78",
+    "Dialogue avoids inner thought at aspect 1.78 and distance 6.40",
+    "Situation header stays hidden while observing at aspect 1.78",
+    "Dialogue avoids inner thought at aspect 1.78 and distance 4.00",
+    "Situation header stays hidden while observing at aspect 1.78",
+    "Dialogue avoids inner thought at aspect 1.78 and distance 4.00",
+    "Situation header stays hidden while observing at aspect 1.60",
+    "Dialogue avoids inner thought at aspect 1.60 and distance 6.40",
+    "Situation header stays hidden while observing at aspect 1.60",
+    "Dialogue avoids inner thought at aspect 1.60 and distance 4.00",
+    "Situation header stays hidden while observing at aspect 1.60",
+    "Dialogue avoids inner thought at aspect 1.60 and distance 4.00",
+    "Situation header stays hidden while observing at aspect 1.33",
+    "Dialogue avoids inner thought at aspect 1.33 and distance 6.40",
+    "Situation header stays hidden while observing at aspect 1.33",
+    "Dialogue avoids inner thought at aspect 1.33 and distance 4.00",
+    "Situation header stays hidden while observing at aspect 1.33",
+    "Dialogue avoids inner thought at aspect 1.33 and distance 4.00",
+    "Repositioned hint remains reachable by the desktop center ray",
+    "Re-enabling the controller restores both selection beam and dot",
+    "Restored laser still hits the real choice button",
+    "Hover raises button content without changing its hit rectangle",
+    "Press recesses the face and content",
+    "Release, exit and deselection restore the original content position",
+    "All three choices use the same face color",
+    "Styled route controls reach the reward",
+    "Answered options retain their disabled state",
+    "Earned stamp remains visible in the notebook style",
+    "No UI mesh or event errors during the review"
+  ],
+  "errors": [],
+  "scene": "Assets/Test/Scenes/WetCorridor_Test.unity",
+  "limitations": [
+    "Desktop UI rendering and pointer events checked; physical headset not tested."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "failure": null,
+  "checks": [
+    "Reference corridor is the active environment",
+    "Umbrellas and their stand are removed",
+    "Bucket and string mop are saved in the scene",
+    "Cleaning tools sit behind the far edge of the puddle",
+    "Previous layouts are preserved and inactive",
+    "Friend starts at the shared hero position",
+    "ProjectWait/Storybook Toon compiles without errors",
+    "ProjectWait/Illustrated Water compiles without errors",
+    "Opening thought matches the new composition",
+    "Action stays entirely in view at aspect 1.78",
+    "Thought and action are separate at aspect 1.78",
+    "Looking does not move the action hit target at aspect 1.78",
+    "Action stays entirely in view at aspect 1.60",
+    "Thought and action are separate at aspect 1.60",
+    "Looking does not move the action hit target at aspect 1.60",
+    "Action stays entirely in view at aspect 1.33",
+    "Thought and action are separate at aspect 1.33",
+    "Looking does not move the action hit target at aspect 1.33",
+    "Real center ray reaches and highlights the cleaning tools",
+    "Cleaning tools show their contextual thought",
+    "Cleaning observation does not select an action or award a stamp",
+    "Cleaning thought fits on two lines inside the cloud",
+    "Center ray reaches the mop at the left wall",
+    "Mop leans toward the left wall",
+    "Beam and dot restore after disable and re-enable",
+    "Action square is reachable by center-ray selection",
+    "Action square opens the three existing choices",
+    "Foreground hands clear the choice controls",
+    "Visible text fits: Label",
+    "Visible text fits: Room_Number",
+    "Visible text fits: Room_Number",
+    "Visible text fits: Room_Number",
+    "Visible text fits: ThoughtOwner",
+    "Visible text fits: Label",
+    "Visible text fits: Speech",
+    "Visible text fits: Thought",
+    "Visible text fits: Room_Number",
+    "Visible text fits: Label",
+    "Visible text fits: Label",
+    "Safe route reaches the authored arrival position",
+    "Arrival dialogue remains inside the view",
+    "No runtime errors during reference review"
+  ],
+  "errors": [],
+  "textDetails": [
+    {
+      "text": "행동 선택",
+      "characters": 5,
+      "visible": [
+        "행",
+        "동",
+        "선",
+        "택"
+      ],
+      "size": "(x:-115.00, y:-31.25, width:230.00, height:62.50)"
+    }
+  ],
+  "limitations": "Desktop review; physical XR headset and controllers not tested. Water reflections are authored shapes."
+}

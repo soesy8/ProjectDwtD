@@ -21,6 +21,11 @@ namespace DwtD.TestScene
         public AudioSource feedbackAudio;
         public Camera playerCamera;
         public GameObject xrRig;
+        [UnityEngine.Serialization.FormerlySerializedAs("umbrellaClue")]
+        public Transform cleaningToolsClue;
+        [Header("Storybook art")]
+        [Min(1f)] public float friendSpeechHeight = 2.65f;
+        public Material storybookTextMaterial;
 
         public Phase CurrentPhase { get; private set; }
         public bool HasStamp { get; private set; }
@@ -36,7 +41,7 @@ namespace DwtD.TestScene
         public bool CanObserve => CurrentPhase == Phase.Observing || CurrentPhase == Phase.Choosing || CurrentPhase == Phase.WaitingForPath;
         public CorridorStoryPresentation Story { get; private set; }
 
-        readonly Vector3 startPosition = new Vector3(-.55f,0,5.7f);
+        readonly Vector3 startPosition = CorridorComposition.FriendStart;
         Quaternion baseRotation = Quaternion.Euler(0,180,0);
         float gait, walkAmount;
         AudioClip positiveTone, warningTone, stampTone;
@@ -81,14 +86,12 @@ namespace DwtD.TestScene
                 if(k.enterKey.wasPressedThisFrame) { if(CurrentPhase==Phase.Reward) CollectStamp(); else NextQuestion(); }
             }
             gait+=Time.unscaledDeltaTime*8*walkAmount;
-            if(CurrentPhase==Phase.Choosing || CurrentPhase==Phase.Title || CurrentPhase==Phase.Observing)
-                rightArm.localRotation=Quaternion.Euler(0,0,145+Mathf.Sin(Time.unscaledTime*2.8f)*12);
-            else rightArm.localRotation=Quaternion.Euler(Mathf.Sin(gait)*22*walkAmount,0,-8);
-            leftArm.localRotation=Quaternion.Euler(-Mathf.Sin(gait)*22*walkAmount,0,8);
+            rightArm.localRotation=Quaternion.Euler(Mathf.Sin(gait)*14*walkAmount,0,-8);
+            leftArm.localRotation=Quaternion.Euler(-Mathf.Sin(gait)*14*walkAmount,0,8);
             leftLeg.localRotation=Quaternion.Euler(Mathf.Sin(gait)*24*walkAmount,0,0);
             rightLeg.localRotation=Quaternion.Euler(-Mathf.Sin(gait)*24*walkAmount,0,0);
             friendShadow.position=new Vector3(friend.position.x,.025f,friend.position.z);
-            bubble.transform.parent.position=friend.position+Vector3.up*2.12f;
+            bubble.transform.parent.position=friend.position+Vector3.up*friendSpeechHeight;
         }
 
         public void Begin()
@@ -155,7 +158,7 @@ namespace DwtD.TestScene
 
         IEnumerator UnsafeWalk(bool hurry)
         {
-            yield return MoveTo(new Vector3(-.55f,0,2.4f),hurry ? 2.6f : 1.8f);
+            yield return MoveTo(CorridorComposition.UnsafeContact,hurry ? 2.6f : 1.8f);
             heading.text="잠깐, 발밑에 물기가 있어요";
             subtitle.text="서두르던 발걸음이 물기에 닿았어요.";
             causeHighlight.SetActive(true); Play(warningTone);
@@ -165,7 +168,7 @@ namespace DwtD.TestScene
             while(t<1)
             {
                 t+=Time.unscaledDeltaTime*.5f;
-                friend.position=Vector3.Lerp(p,new Vector3(-.8f,.08f,1.8f),Mathf.Clamp01(t));
+                friend.position=Vector3.Lerp(p,CorridorComposition.UnsafeEnd,Mathf.Clamp01(t));
                 friend.rotation=baseRotation*Quaternion.Euler(-12,0,Mathf.Lerp(0,hurry ? 38 : 24,t));
                 yield return null;
             }
@@ -188,9 +191,9 @@ namespace DwtD.TestScene
 
         IEnumerator SafeWalk()
         {
-            yield return MoveTo(new Vector3(1.65f,0,4.1f),1.45f);
-            yield return MoveTo(new Vector3(1.65f,0,.35f),1.45f);
-            yield return MoveTo(new Vector3(.65f,0,-.15f),1.35f);
+            yield return MoveTo(CorridorComposition.SafeTurn,1.45f);
+            yield return MoveTo(CorridorComposition.SafePass,1.45f);
+            yield return MoveTo(CorridorComposition.SafeEnd,1.35f);
             friend.rotation=baseRotation; walkAmount=0; Play(positiveTone);
             CurrentPhase=Phase.Reward; ShowPanel(rewardPanel);
             heading.text="친구가 무사히 도착했어요";

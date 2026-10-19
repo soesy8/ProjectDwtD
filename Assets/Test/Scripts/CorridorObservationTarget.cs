@@ -7,7 +7,7 @@ namespace DwtD.TestScene
     [RequireComponent(typeof(XRSimpleInteractable))]
     public sealed class CorridorObservationTarget : MonoBehaviour
     {
-        public enum Clue { Water, Friend }
+        public enum Clue { Water, Friend, CleaningTools }
         public Clue clue;
         public CorridorStoryPresentation story;
         public LineRenderer outline;

@@ -49,7 +49,7 @@ public static class ValidateStory
         }
         void Capture(string name,bool keepView=false)
         {
-            if(!keepView) p.playerCamera.transform.rotation=Quaternion.identity;
+            if(!keepView) p.playerCamera.transform.rotation=Quaternion.Euler(CorridorComposition.InitialPitch,0,0);
             Canvas.ForceUpdateCanvases();
             var previous=p.playerCamera.targetTexture;
             var active=RenderTexture.active;
@@ -57,7 +57,9 @@ public static class ValidateStory
             var image=new Texture2D(1600,1000,TextureFormat.RGB24,false);
             try
             {
-                p.playerCamera.targetTexture=rt; thoughts.FollowView(); p.playerCamera.Render(); RenderTexture.active=rt;
+                p.playerCamera.targetTexture=rt;
+                foreach(var panel in UnityEngine.Object.FindObjectsByType<CorridorWorldPanel>(FindObjectsInactive.Include,FindObjectsSortMode.None)) panel.RefreshLayout();
+                thoughts.FollowView(); p.Story.RefreshSpeechLayout(); p.playerCamera.Render(); RenderTexture.active=rt;
                 image.ReadPixels(new Rect(0,0,1600,1000),0,0); image.Apply();
                 File.WriteAllBytes("Test/Story_"+name+".png",image.EncodeToPNG());
             }
@@ -169,7 +171,7 @@ public static class ValidateStory
             if(thoughts!=null) thoughts.gameObject.SetActive(true);
             d.enabled=true; d.SetMouseLook(false);
         }
-        var report=new { date="2026-10-18", unityVersion=Application.unityVersion, success, failure, checks, errors,
+        var report=new { date=DateTime.UtcNow.AddHours(9).ToString("yyyy-MM-dd"), unityVersion=Application.unityVersion, success, failure, checks, errors,
             scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, p.StampCount,p.RetryCount,p.UnsafeAttempts,p.HintCount,
             limitations=new[]{"Desktop center-ray/UI integration checked; physical headset and controller not tested."} };
         File.WriteAllText("Test/StoryValidation.json",Newtonsoft.Json.JsonConvert.SerializeObject(report,Newtonsoft.Json.Formatting.Indented));
