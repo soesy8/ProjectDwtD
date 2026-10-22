@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "texture": "Assets/M/Arts/Textures/Skybox_Storybook_City_1024.png",
+  "width": 1024,
+  "height": 512,
+  "projection": "2:1 equirectangular 360 x 180 degrees",
+  "shader": "Skybox/Panoramic",
+  "shaderErrors": [],
+  "textureGuid": "8f71bfbaaad501b4b93c26745b04b828",
+  "sRGB": true,
+  "compression": "Uncompressed",
+  "wrapU": "Repeat",
+  "wrapV": "Clamp",
+  "previewScene": "Assets/M/CodexTemp/SkyboxCityReview/Preview.unity",
+  "previewImage": "Assets/M/CodexTemp/SkyboxCityReview/Skybox_Views.png",
+  "imageViewOrder": [
+    "forward",
+    "right",
+    "back",
+    "left",
+    "zenith",
+    "nadir"
+  ],
+  "graphicsDevice": "Direct3D11",
+  "limitations": [
+    "Physical XR headset and player build not tested."
+  ]
+}

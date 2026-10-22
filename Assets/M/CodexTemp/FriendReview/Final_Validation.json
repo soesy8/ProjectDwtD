@@ -1,0 +1,23 @@
+{
+  "pass": true,
+  "scenes": [
+    {
+      "scene": "Assets/M/Scene/WetCorridor_Friend_Test.unity",
+      "missingScripts": 0,
+      "friendAnimators": 1,
+      "legacyVisible": 0,
+      "tempDependencies": []
+    },
+    {
+      "scene": "Assets/M/Scene/Friend_Animation_Test.unity",
+      "missingScripts": 0,
+      "friendAnimators": 1,
+      "legacyVisible": 0,
+      "tempDependencies": []
+    }
+  ],
+  "editorPlayModeVerified": true,
+  "unsafeResult": "Fall / UnsafeExplanation",
+  "safeResult": "Idle / Reward",
+  "runtimeErrors": 0
+}

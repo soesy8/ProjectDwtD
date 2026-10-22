@@ -1,0 +1,12 @@
+﻿{
+    "path":  "Assets/M/Arts/Textures/Skybox_Storybook_City_1024.png",
+    "width":  1024,
+    "height":  512,
+    "format":  "PNG RGB",
+    "source":  "Built-in image_gen edit",
+    "exportPreparation":  "16-pixel cosine-tapered wrap-edge normalization",
+    "comparison":  "Saved PNG reloaded; first and last columns compared for all 512 rows and all RGB channels",
+    "exactMatchingRows":  512,
+    "seamPeakMaxChannelDifference":  0,
+    "sha256":  "C221AAC4E9BBFA9E0A91209889CA9C81D23A92A9C7E9AAF4122D2E990CF5A568"
+}

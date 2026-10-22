@@ -1,0 +1,32 @@
+{
+  "blend": "D:\\project\\ProjectWait\\Assets\\M\\CodexTemp\\BlenderExport~\\Friend_Milo_Prototype.blend",
+  "sourceScene": "Assets/Test/Scenes/WetCorridor_Test.unity",
+  "blenderVersion": "5.1.1",
+  "objectsFromUnity": 69,
+  "meshes": 61,
+  "visibleMeshes": 55,
+  "vertices": 27917,
+  "triangles": 41469,
+  "materials": 19,
+  "curves": 1,
+  "dimensionsMeters": [
+    1.2649999856948853,
+    1.0527000427246094,
+    2.565408706665039
+  ],
+  "sourceWorldBoundsConverted": [
+    1.4300000667572021,
+    1.3904001712799072,
+    2.565408706665039
+  ],
+  "normalImportAPI": "normals_split_custom_set_from_vertices",
+  "warnings": [],
+  "hiddenParts": [
+    "HairFringe",
+    "HairFringe",
+    "HairFringe",
+    "EyeWhite",
+    "EyeWhite",
+    "SurprisedMouth"
+  ]
+}

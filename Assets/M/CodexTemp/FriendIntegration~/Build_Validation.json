@@ -1,0 +1,13 @@
+{
+  "source": "Assets/M/Arts/Models/Friend/Wait_Friend_Edited.fbx",
+  "prefab": "Assets/M/Arts/Models/Friend/Wait_Friend.prefab",
+  "storyScene": "Assets/M/Scene/WetCorridor_Friend_Test.unity",
+  "previewScene": "Assets/M/Scene/Friend_Animation_Test.unity",
+  "materialCount": 25,
+  "bones": 17,
+  "clips": [
+    "Idle",
+    "Walk",
+    "Fall"
+  ]
+}

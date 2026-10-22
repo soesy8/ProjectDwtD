@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "filesVerified": 42,
+  "byproductsVerified": 106,
+  "sceneResults": [
+    {
+      "path": "Assets/Test/Scenes/Friend_Animation_Test.unity",
+      "missingScripts": 0,
+      "badMaterials": 0,
+      "staleMDependencies": []
+    },
+    {
+      "path": "Assets/Test/Scenes/WetCorridor_Friend_Test.unity",
+      "missingScripts": 0,
+      "badMaterials": 0,
+      "staleMDependencies": []
+    }
+  ],
+  "errors": [],
+  "activeScene": "Assets/Test/Scenes/WetCorridor_Friend_Test.unity"
+}

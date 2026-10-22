@@ -1,0 +1,237 @@
+{
+  "completedUtc": "2026-10-22T04:15:18.5277410Z",
+  "mode": "Unity Editor Play Mode, PC, real UI callbacks; timer advances compressed via lesson.Advance; no HMD",
+  "passed": 41,
+  "checks": [
+    {
+      "name": "Fresh run: Observe, clear history and floor 2",
+      "success": true
+    },
+    {
+      "name": "Six neutral observation targets",
+      "success": true
+    },
+    {
+      "name": "Exactly one EventSystem",
+      "success": true
+    },
+    {
+      "name": "No missing scripts",
+      "success": true
+    },
+    {
+      "name": "Look more returns to observation without a jump",
+      "success": true
+    },
+    {
+      "name": "Look-more waits for player's explicit return",
+      "success": true
+    },
+    {
+      "name": "Proposal can reopen",
+      "success": true
+    },
+    {
+      "name": "Warning accepted once; duplicate choice is ignored",
+      "success": true
+    },
+    {
+      "name": "Friend leaves floor before breakdown; motor still runs",
+      "success": true
+    },
+    {
+      "name": "Landing causes common breakdown and stops motor",
+      "success": true
+    },
+    {
+      "name": "First hint, no automatic rescue before help",
+      "success": true
+    },
+    {
+      "name": "Second hint and frozen floor display",
+      "success": true
+    },
+    {
+      "name": "Thought changes after stop",
+      "success": true
+    },
+    {
+      "name": "Unsafe door action interrupted before execution",
+      "success": true
+    },
+    {
+      "name": "Retry returns to stopped coping, preserves initial warning",
+      "success": true
+    },
+    {
+      "name": "Intercom request starts only one connection",
+      "success": true
+    },
+    {
+      "name": "Intercom connects",
+      "success": true
+    },
+    {
+      "name": "Cannot wait for rescue before sharing location",
+      "success": true
+    },
+    {
+      "name": "Location report is idempotent",
+      "success": true
+    },
+    {
+      "name": "Acknowledged advice starts rescue wait",
+      "success": true
+    },
+    {
+      "name": "Reassure friend",
+      "success": true
+    },
+    {
+      "name": "Unsafe exit also intercepted after help",
+      "success": true
+    },
+    {
+      "name": "Retry preserves request and reassurance",
+      "success": true
+    },
+    {
+      "name": "Rescue follows requested wait",
+      "success": true
+    },
+    {
+      "name": "Warning route completes with separate prevention record",
+      "success": true
+    },
+    {
+      "name": "Agreement route has same event and different initial judgment",
+      "success": true
+    },
+    {
+      "name": "Agreement does not loop back to force a correct prevention answer",
+      "success": true
+    },
+    {
+      "name": "No-response branch",
+      "success": true
+    },
+    {
+      "name": "No rescue without help in no-response branch",
+      "success": true
+    },
+    {
+      "name": "Phone fallback opens simulated 119 dialogue",
+      "success": true
+    },
+    {
+      "name": "119 fallback completes",
+      "success": true
+    },
+    {
+      "name": "Restart clears connection, history, sound and timer",
+      "success": true
+    },
+    {
+      "name": "Old connection cannot fire after reset",
+      "success": true
+    },
+    {
+      "name": "Developer stage 0 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 1 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 2 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 3 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 4 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 5 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Developer stage 6 resets previous state",
+      "success": true
+    },
+    {
+      "name": "Restart mid-jump restores ground and zero jumps",
+      "success": true
+    }
+  ],
+  "warned": {
+    "step": "Complete",
+    "prevention": "Warned",
+    "HelpRequested": true,
+    "LocationReported": true,
+    "UsedPhone": false,
+    "Reassured": true,
+    "HintLevel": 0,
+    "JumpCount": 1,
+    "Floor": 3,
+    "motorPlaying": false,
+    "friendHeight": 0.0,
+    "history": [
+      "제안: 주변을 더 살펴봄",
+      "예방 판단: 위험해. 뛰지 말자. (올바른 판단)",
+      "첫 시도 기록: 문을 억지로 열려고 함 → Wait! 중단 후 재도전",
+      "대처: 비상통화 장치 작동",
+      "비상통화: 관리실 연결",
+      "대처: 건물명·승강기 식별 정보·2명 갇힘 전달",
+      "대처: 안내를 듣고 안전하게 대기",
+      "대처: 친구를 안심시킴",
+      "첫 시도 기록: 스스로 빠져나가려고 함 → Wait! 중단 후 재도전"
+    ]
+  },
+  "agreed": {
+    "step": "Complete",
+    "prevention": "Agreed",
+    "HelpRequested": true,
+    "LocationReported": true,
+    "UsedPhone": false,
+    "Reassured": false,
+    "HintLevel": 0,
+    "JumpCount": 1,
+    "Floor": 2,
+    "motorPlaying": false,
+    "friendHeight": 0.0,
+    "history": [
+      "예방 판단: 조금만 뛰어보자. (위험 행동에 동조)",
+      "대처: 비상통화 장치 작동",
+      "비상통화: 관리실 연결",
+      "대처: 건물명·승강기 식별 정보·2명 갇힘 전달",
+      "대처: 안내를 듣고 안전하게 대기"
+    ]
+  },
+  "fallback": {
+    "step": "Complete",
+    "prevention": "Warned",
+    "HelpRequested": true,
+    "LocationReported": true,
+    "UsedPhone": true,
+    "Reassured": true,
+    "HintLevel": 0,
+    "JumpCount": 1,
+    "Floor": 2,
+    "motorPlaying": false,
+    "friendHeight": 0.0,
+    "history": [
+      "예방 판단: 위험해. 뛰지 말자. (올바른 판단)",
+      "대처: 비상통화 장치 작동",
+      "비상통화: 응답 없음",
+      "대처: 휴대폰 119 모의 신고",
+      "대처: 건물명·승강기 식별 정보·2명 갇힘 전달",
+      "대처: 안내를 듣고 안전하게 대기",
+      "대처: 친구를 안심시킴"
+    ]
+  }
+}

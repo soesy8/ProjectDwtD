@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "filesMoved": 42,
+  "moveOperations": 10,
+  "byproductFilesKept": 106,
+  "byproductsChanged": [],
+  "remainingInM": [
+    "CodexTemp",
+    "CodexTemp.meta"
+  ]
+}

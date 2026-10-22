@@ -1,0 +1,15 @@
+{
+  "reopenedSuccessfully": true,
+  "meshesChecked": 61,
+  "uvMeshesChecked": 49,
+  "trianglesChecked": 41469,
+  "maxVertexErrorMeters": 0.0,
+  "maxLocalTransformError": 5.960464477539063e-08,
+  "hierarchyPreserved": true,
+  "visibilityPreserved": true,
+  "singleUserMeshes": true,
+  "sourceNormalsPreserved": true,
+  "materialAssignmentsPreserved": true,
+  "externalTextureDependencies": 0,
+  "armature": false
+}

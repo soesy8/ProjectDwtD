@@ -1,0 +1,100 @@
+{
+  "success": true,
+  "passed": 23,
+  "completedUtc": "2026-10-22T04:16:59.2613383Z",
+  "mode": "Play Mode: Input System mouse delta and center-click events, keyboard, real-time landing; temporary in-memory background-input settings; no physical HMD",
+  "checks": [
+    {
+      "name": "Player camera matches measured friend eye height",
+      "success": true
+    },
+    {
+      "name": "Desktop selection beam and dot visible",
+      "success": true
+    },
+    {
+      "name": "Observation has no large persistent instruction card",
+      "success": true
+    },
+    {
+      "name": "Digit1 opens proposal",
+      "success": true
+    },
+    {
+      "name": "Digit3 returns to observation",
+      "success": true
+    },
+    {
+      "name": "Choice remains stationary while aiming 0",
+      "success": true
+    },
+    {
+      "name": "Center ray hits choice 0",
+      "success": true
+    },
+    {
+      "name": "Selection dot stays at view center",
+      "success": true
+    },
+    {
+      "name": "Center-laser click reopens proposal",
+      "success": true
+    },
+    {
+      "name": "Choice remains stationary while aiming 0",
+      "success": true
+    },
+    {
+      "name": "Center ray hits choice 0",
+      "success": true
+    },
+    {
+      "name": "Selection dot stays at view center",
+      "success": true
+    },
+    {
+      "name": "Center-laser choice selects warning",
+      "success": true
+    },
+    {
+      "name": "Real-time landing stops elevator",
+      "success": true
+    },
+    {
+      "name": "R restarts lesson",
+      "success": true
+    },
+    {
+      "name": "Mouse rotation aims at friend and shows thought",
+      "success": true
+    },
+    {
+      "name": "Thought stays readable at the same viewport position while looking around",
+      "success": true
+    },
+    {
+      "name": "Thought disappears when gaze leaves target",
+      "success": true
+    },
+    {
+      "name": "Escape releases cursor and hides beam",
+      "success": true
+    },
+    {
+      "name": "Released cursor does not rotate view",
+      "success": true
+    },
+    {
+      "name": "Escape restores mouse look and beam",
+      "success": true
+    },
+    {
+      "name": "F8 opens developer controls",
+      "success": true
+    },
+    {
+      "name": "Center ray selects saved developer stage button",
+      "success": true
+    }
+  ]
+}

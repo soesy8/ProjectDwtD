@@ -1,0 +1,34 @@
+수정한 친구 캐릭터 — Unity 테스트
+
+1. 움직임 미리보기
+Assets/Test/Scenes/Friend_Animation_Test.unity
+씬을 열고 Play를 누르면 걷기 → 넘어지기 → 기본 자세가 자동 반복됩니다.
+화면 버튼 또는 1 기본 자세 / 2 걷기 / 3 넘어지기 / Space 자동 반복을 사용합니다.
+걷기는 제자리 루프이고, 넘어지기는 옆으로 기울어 바닥에 닿은 자세를 유지합니다.
+
+2. 기존 복도 흐름에 적용한 테스트
+Assets/Test/Scenes/WetCorridor_Friend_Test.unity
+원래 복도 테스트를 테스트 폴더에 복사하고 새 모델을 연결했습니다.
+Play → Space(친구 만나기) → Space(행동 선택).
+1 또는 3 선택: 걸어오다가 미끄러져 넘어집니다. R로 다시 시도합니다.
+2 → 4 선택: 안전한 길로 걷고 도착하면 기본 자세로 돌아옵니다.
+
+캐릭터 프리팹
+Assets/Test/Art/Models/Friend/Wait_Friend.prefab
+
+애니메이션과 컨트롤러
+Assets/Test/Art/Animations/Friend/Friend_Idle.anim
+Assets/Test/Art/Animations/Friend/Friend_Walk.anim
+Assets/Test/Art/Animations/Friend/Friend_Fall.anim
+Assets/Test/Art/Animations/Friend/Friend.controller
+
+수정된 블렌더 원본 보관
+Assets/Test/Art/Models/Friend/Source~/Wait_Friend_Edited.blend
+Unity용 FBX는 같은 Friend 폴더의 Wait_Friend_Edited.fbx입니다.
+Source~ 폴더는 Unity의 자동 Blender 변환에서 제외됩니다.
+
+수정본의 메시·재질·기본 뼈대를 사용한 간단한 테스트 애니메이션입니다.
+Generic 계층의 Transform 커브를 사용하며 Humanoid 리타게팅은 설정하지 않았습니다.
+검증 캡처와 실행 결과는 Assets/M/CodexTemp/FriendReview/에 있습니다.
+Unity 에디터의 Play 모드에서 반복 재생과 두 복도 분기를 확인했습니다.
+XR 실기기와 플레이어 빌드는 이번 작업에서 검증하지 않았습니다.

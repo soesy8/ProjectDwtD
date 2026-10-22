@@ -1,0 +1,730 @@
+{
+  "moves": [
+    {
+      "source": "Assets/M/Arts/Animations",
+      "destination": "Assets/Test/Art/Animations"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend",
+      "destination": "Assets/Test/Art/Materials/Friend"
+    },
+    {
+      "source": "Assets/M/Arts/Models",
+      "destination": "Assets/Test/Art/Models"
+    },
+    {
+      "source": "Assets/M/Arts/Shaders",
+      "destination": "Assets/Test/Art/Shaders"
+    },
+    {
+      "source": "Assets/M/Arts/Textures",
+      "destination": "Assets/Test/Art/Textures"
+    },
+    {
+      "source": "Assets/M/Scene/Friend_Animation_Test.unity",
+      "destination": "Assets/Test/Scenes/Friend_Animation_Test.unity"
+    },
+    {
+      "source": "Assets/M/Scene/WetCorridor_Friend_Test.unity",
+      "destination": "Assets/Test/Scenes/WetCorridor_Friend_Test.unity"
+    },
+    {
+      "source": "Assets/M/Scene/친구_테스트_안내.txt",
+      "destination": "Assets/Test/Scenes/친구_테스트_안내.txt"
+    },
+    {
+      "source": "Assets/M/Scripts/FriendAnimationPreview.cs",
+      "destination": "Assets/Test/Scripts/FriendAnimationPreview.cs"
+    },
+    {
+      "source": "Assets/M/Scripts/FriendCorridorAnimation.cs",
+      "destination": "Assets/Test/Scripts/FriendCorridorAnimation.cs"
+    }
+  ],
+  "mergedFolders": [
+    "Assets/M/Arts",
+    "Assets/M/Arts/Materials",
+    "Assets/M/Scene",
+    "Assets/M/Scripts"
+  ],
+  "assets": [
+    {
+      "source": "Assets/M/Arts/Animations/Friend/Friend.controller",
+      "destination": "Assets/Test/Art/Animations/Friend/Friend.controller",
+      "guid": "63f27386f20bdfc4f826d44b9378abcc",
+      "hash": "2AF0663D9769FC93E89C44CE5153719060353A704169EE0948B37F4A584185AE"
+    },
+    {
+      "source": "Assets/M/Arts/Animations/Friend/Friend_Fall.anim",
+      "destination": "Assets/Test/Art/Animations/Friend/Friend_Fall.anim",
+      "guid": "e332fcb6807fedc46ab0510ea3665c60",
+      "hash": "FC7CF4C371BF41E4788AF423ECE4AC9FA04AB7CC2186174BA5C8F22EB6298EE5"
+    },
+    {
+      "source": "Assets/M/Arts/Animations/Friend/Friend_Idle.anim",
+      "destination": "Assets/Test/Art/Animations/Friend/Friend_Idle.anim",
+      "guid": "4ecfeb812b8f1fa45ac50958886811f8",
+      "hash": "4FF1A0B47CA77B803EE8CD7AA7A3518C67AE6484FA99AFDA1DEEFC170E21E937"
+    },
+    {
+      "source": "Assets/M/Arts/Animations/Friend/Friend_Walk.anim",
+      "destination": "Assets/Test/Art/Animations/Friend/Friend_Walk.anim",
+      "guid": "e0972d1e8ed3c4447820d1295faae9a9",
+      "hash": "6DC7870B5882D48D3A8E11B79FD90F4293EC1528747054C674356BB2963A2C21"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Backpack_teal.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Backpack_teal.mat",
+      "guid": "77afb12921a5bb74db808ec597cee356",
+      "hash": "B64C8DCF620D949130E43B7D4568A2A233F3160FEF63A997A7FE033639512A48"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Cheeks_soft_coral.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Cheeks_soft_coral.mat",
+      "guid": "5d6f2d34bafc13f41a97f57ff13f5bc6",
+      "hash": "7CA52DC9C5C31BE8619579FD580B9595AA96D59CFAB02F65AFCC658AD31F7887"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Cuff_hem_E87927.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Cuff_hem_E87927.mat",
+      "guid": "483b169fa2a06bf42be2fb610d3b44b9",
+      "hash": "59C82AF7034874243C7D321EEF28DF93F18719CFEFD04EE1F005119ACB5D9F7E"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Ear_warm_coral.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Ear_warm_coral.mat",
+      "guid": "de67195e388dbe945bfcad0e19320026",
+      "hash": "2BCA3B39A4CD99EC6DCFBB7B9D1C251E9D98BB7119F5523E41A5DB4E22412D6A"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Eye_glints_teeth.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Eye_glints_teeth.mat",
+      "guid": "009228a759ce7c549b8cc2477cf8eb84",
+      "hash": "65E5BA75694BEDFE6BF10EF06856448625A74FFCC163546727F1FCC751BBF4FB"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Eyes_espresso.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Eyes_espresso.mat",
+      "guid": "5a460b318b388834083dea5a89492b8c",
+      "hash": "0C5BC9A73EDB086C5677EDC207299BCFD186EF7E7AD8945E20D38681A445652F"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/FriendPreviewKorean.asset",
+      "destination": "Assets/Test/Art/Materials/Friend/FriendPreviewKorean.asset",
+      "guid": "939407eebb7b1764b8978525ae6825fb",
+      "hash": "2F519E8085BE8105A36B62A550C0B17AF6A3A913293CEA240E943B38EB84828A"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hair_chestnut_00.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hair_chestnut_00.mat",
+      "guid": "4f643b07e48ce8c4b9d7db5707f8a144",
+      "hash": "C83595BC67D31AB3F50F6190A5468F9F284A1F9A10E4536289DB8D7E87E0DDC0"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hair_chestnut_01.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hair_chestnut_01.mat",
+      "guid": "b4ad00c97aa543849b2c39105bc99f1d",
+      "hash": "31C3FD3794700792C20806C487F8B4DFE616D88F9885FD22126F7D2D3101F2F3"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hair_chestnut_02.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hair_chestnut_02.mat",
+      "guid": "47923122ad0cff943a9514a8957e6bfc",
+      "hash": "9D2C08DF26617CB27A09A0D00D468FF72FCE73D3EFFAC3D260C2E246EC62F2F2"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hair_chestnut_03.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hair_chestnut_03.mat",
+      "guid": "bf885f66d2388274bb845eae6b33260c",
+      "hash": "F6FB34E1A15F95C618643099DB21BD37BF5F44BC833A235050669D93ADF045A6"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hair_chestnut_04.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hair_chestnut_04.mat",
+      "guid": "5b1c29124aa04d24e8577e4f7b562ff9",
+      "hash": "329D642F61A5633AE07DC27E74E4C6DF28D6D81045AB93DC10C63611AE96DE5A"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Hoodie_FF8C2D.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Hoodie_FF8C2D.mat",
+      "guid": "561d0828d2ac92f4c970b98a05b71ddf",
+      "hash": "77A210285FAC65AF536E45A7AFBAA36D2938E13E922826C0B93C08F86BDAC9BD"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Ink_493327.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Ink_493327.mat",
+      "guid": "c4364c8468889284ea6ab43570c792e8",
+      "hash": "B9ECDD0DEA47695DC7E5B4F36C0317036E4179C607841E59445978BC3DE9C443"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Mouth_inside.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Mouth_inside.mat",
+      "guid": "86d9538a84dda10419a38273d569d854",
+      "hash": "C1CA2C9E95324A7A7057859E3D1FB21B0ADDF9BD0684CBE43631BDC614DD2CCA"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Orange_stitch.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Orange_stitch.mat",
+      "guid": "cf02d02493a1ead4797b9088d6c125d4",
+      "hash": "9341B7BEF505CC5AC7B34FACC96172FAB028CF35F0B16B0428C6C113B5C261F7"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Shoes_bag_label_warm_cream.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Shoes_bag_label_warm_cream.mat",
+      "guid": "920a170e630936d40bc140a5d267d01c",
+      "hash": "0ECE48E52222F74E1863B685CC5A55B64A5AFD152F363C8481CD798CE9781A0A"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Shorts_3B3E48.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Shorts_3B3E48.mat",
+      "guid": "ae3408ab13202da4a8c6ca15348e4463",
+      "hash": "CA525BE75C61FDA9757A46CCC6339A90DE2564930A3BE58F218181EE67B13314"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Shorts_seam.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Shorts_seam.mat",
+      "guid": "d28011bb95055fe43b7c0630a5394442",
+      "hash": "AB27431613E97233A93ECFE2AC3A2059161BFF48986775C2411CF1EA44E1860A"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Shoulder_straps.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Shoulder_straps.mat",
+      "guid": "d620e85638c3c48448b396165e4218c3",
+      "hash": "BB38C590BD11DCB602C30196C24F60EC2FEF89A1288193351E4238DADE790435"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Skin_FFC08A.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Skin_FFC08A.mat",
+      "guid": "23a373f1945b1a34aa7917fb8eab9aad",
+      "hash": "9E6A5EA1B399CF098F2BAB14B8521E7ED03443D053E33733B83C5BE43966A11F"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Socks_ivory.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Socks_ivory.mat",
+      "guid": "5bd0c7b15af66e34c8308bac0044370f",
+      "hash": "9AE6E1A3F5363505CDB1C812A2A3E73A995584D25ECC6E7B6A4E99B93697D486"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Soles_warm_grey.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Soles_warm_grey.mat",
+      "guid": "47a23a1a9e2720f428ce6cb1e2406623",
+      "hash": "8552872AE3B70409150DB801C7B84C7DC258C5AC7E079A5430AC86BCE0671ADC"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Teal_piping.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Teal_piping.mat",
+      "guid": "224deae27fdf4e14dba445eda6b94d8b",
+      "hash": "3647F83C9E35996DDCF9FB6043CDD71F53962E637485EB161523F463C27EC41D"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Teal_stitch.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Teal_stitch.mat",
+      "guid": "480ba8e63a7b0cf439de1b0c7f745440",
+      "hash": "354F924E0D576BC7635A6D27CAF1678476C8816BF986E55338B072E7397772C9"
+    },
+    {
+      "source": "Assets/M/Arts/Materials/Friend/Tongue.mat",
+      "destination": "Assets/Test/Art/Materials/Friend/Tongue.mat",
+      "guid": "0c136364698b0564eb404fa1f12a0b24",
+      "hash": "C8489011DF2A3906487519B0786DF6D901694D79879BF70C370541F9B833E6B8"
+    },
+    {
+      "source": "Assets/M/Arts/Models/Friend/Friend_MaterialManifest.json",
+      "destination": "Assets/Test/Art/Models/Friend/Friend_MaterialManifest.json",
+      "guid": "a4ad32183f23986498251deca886980e",
+      "hash": "F5F5A911A0306F193ED9196B296C002BD1481C24B73FEBCDD7AC969C7D1A2D7C"
+    },
+    {
+      "source": "Assets/M/Arts/Models/Friend/Source~/Wait_Friend_Edited.blend",
+      "destination": "Assets/Test/Art/Models/Friend/Source~/Wait_Friend_Edited.blend",
+      "guid": "",
+      "hash": "E40A4612CF16614589FFAE799D18F8D56F3DDA92997BB112C195372DF3384B70"
+    },
+    {
+      "source": "Assets/M/Arts/Models/Friend/Wait_Friend.prefab",
+      "destination": "Assets/Test/Art/Models/Friend/Wait_Friend.prefab",
+      "guid": "fce58d2338bcfab41b7ec2c26b709674",
+      "hash": "D29B5C9EC81580EBD2D087D663FDEAD3CE023A91A3A810FF56C747994CA12900"
+    },
+    {
+      "source": "Assets/M/Arts/Models/Friend/Wait_Friend_Edited.fbx",
+      "destination": "Assets/Test/Art/Models/Friend/Wait_Friend_Edited.fbx",
+      "guid": "eaf7128e712d29f498ff9900137469d9",
+      "hash": "BB0F698F388F516F1EA1825B4C5881108C7D39934023B7565931F88B458606D3"
+    },
+    {
+      "source": "Assets/M/Arts/Shaders/FriendStorybookToon.shader",
+      "destination": "Assets/Test/Art/Shaders/FriendStorybookToon.shader",
+      "guid": "5d3aef9ae3f1e084f853da6c87fe570a",
+      "hash": "5CBDE9CFE9B45B3FF05DA0D54B99BA73FEA09388051E8339C730DBF6D6612EF9"
+    },
+    {
+      "source": "Assets/M/Arts/Textures/Skybox_Storybook_City_1024.png",
+      "destination": "Assets/Test/Art/Textures/Skybox_Storybook_City_1024.png",
+      "guid": "8f71bfbaaad501b4b93c26745b04b828",
+      "hash": "C221AAC4E9BBFA9E0A91209889CA9C81D23A92A9C7E9AAF4122D2E990CF5A568"
+    },
+    {
+      "source": "Assets/M/Arts/Textures/Skybox_Storybook_Day_1024.png",
+      "destination": "Assets/Test/Art/Textures/Skybox_Storybook_Day_1024.png",
+      "guid": "1ee4e27ea5a916b4aa52655df472963b",
+      "hash": "AEECB04CDB6480960C0F12C1FB01C3CDCB2E0729D00961D34070363898B3670C"
+    },
+    {
+      "source": "Assets/M/Scene/Friend_Animation_Test.unity",
+      "destination": "Assets/Test/Scenes/Friend_Animation_Test.unity",
+      "guid": "a138cc917bc2dd44595fa7f30b7549ac",
+      "hash": "CA1C5C0FDBA73CD2AA74DE05126EA5F1F9D1E8C8C82EA553D24BE1E965F66D21"
+    },
+    {
+      "source": "Assets/M/Scene/WetCorridor_Friend_Test.unity",
+      "destination": "Assets/Test/Scenes/WetCorridor_Friend_Test.unity",
+      "guid": "14949375cb5c2ae459ab652d3182e8ba",
+      "hash": "8F4101A5CC3C0D23A0015E4B5540CBEB60DE0A80E70F3E8FBAE1D2EADF8EAEE9"
+    },
+    {
+      "source": "Assets/M/Scene/친구_테스트_안내.txt",
+      "destination": "Assets/Test/Scenes/친구_테스트_안내.txt",
+      "guid": "3aa4a76ccb4926f47afc35505b0ab80a",
+      "hash": "C814009FE33E74FA0C8CA37311CC385A47B9418BEFF0D7965B88E5C0EC44CCEB"
+    },
+    {
+      "source": "Assets/M/Scripts/FriendAnimationPreview.cs",
+      "destination": "Assets/Test/Scripts/FriendAnimationPreview.cs",
+      "guid": "f4a100049b2bba5469b217e5523153f1",
+      "hash": "7CD75380FD24AC3BA74D092DE4F6DED5241193E7C642F7DA45244693ED367966"
+    },
+    {
+      "source": "Assets/M/Scripts/FriendCorridorAnimation.cs",
+      "destination": "Assets/Test/Scripts/FriendCorridorAnimation.cs",
+      "guid": "878b6bc1e77fab0498be882dfea0a697",
+      "hash": "A27A41116A34EC94F5F06986E19402411574DDEE26A5689414EF374ED4278499"
+    }
+  ],
+  "products": [
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/build_friend_blend.py",
+      "hash": "969598A9EC0F3DFDDFE0335FB66B4A4A2B00214652CA78F0F0737F92481B22D6"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Export_Validation.json",
+      "hash": "7F7A59113346AA875AD6E39EF2354CBBBDD1193D11D4EE1F4D818781B99855C8"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/ExportFriend.cs",
+      "hash": "15F0F2EF981F75726CF7708E41575BA4A97BEA29A062F221004B78F956169DD5"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Friend_Milo_Front.png",
+      "hash": "5224A2C33BED14C6A594432FA8DF2B2D29B5B4AF7AE9725F84F502E46BBEE4BB"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Friend_Milo_Preview.png",
+      "hash": "D723FF8FDE9E29D07A18E9531BACF4BED6D7794A637427D79C1BD3D668683680"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Friend_Milo_Prototype.blend",
+      "hash": "FDBE42D895AF147BDF40C5D4EBE9A60F898BCE5A6A01D88C7807BDBCB75A6904"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Friend_Milo_Source.json",
+      "hash": "42E49D2E800972DBD788C0E242A25A8A28E7D2B3E654F42742720BB3D07136EE"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/InspectFriend.cs",
+      "hash": "EFD27EA4A3C6C6E4B0831691E9B440D875063F9C83CE3E40BBAD1D019967C8C6"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/README_친구캐릭터.txt",
+      "hash": "E9775D4CFEB7F5CE21C0D8E9974A2BA484B3EC174EB3EB9CB3FF129EB590DD34"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/Reopen_Validation.json",
+      "hash": "0C9CEF80962E8B692A06920AC057E27984569DA2063E409506C6AEA2D6991B92"
+    },
+    {
+      "path": "Assets/M/CodexTemp/BlenderExport~/verify_friend_blend.py",
+      "hash": "A82CC533AC3E83CCBEF95A700AC9A75BA98803464500DC84EC29AFCE78672A90"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/Build_Validation.json",
+      "hash": "F1DD845933B7B2C2040264918C67BFF655BCC21F1D43170693217A836154C70C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/BuildFriendIntegration.cs",
+      "hash": "333FAAE732A2999428E3A083E3C62054ADDCF80F07F05EE16DDE3E61AFF88893"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/export.log",
+      "hash": "879D8ABA3538222F32FDF6FD9A8975A9BD09EFB8E5EBAB9500F9FEF13C84B0FF"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/export_edited_friend.py",
+      "hash": "C4A880508992D4BD8AA417AB7C16E6CD14D3B00D26288E3EBD27203D88A272AB"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/Export_Validation.json",
+      "hash": "F5F5A911A0306F193ED9196B296C002BD1481C24B73FEBCDD7AC969C7D1A2D7C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/FinalAssetCheck.cs",
+      "hash": "0722E664D0A93AD343EE7E401D6A9D58DB7C31AAA40C31EEABDF371E0A6CE28D"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/FinalizeFriend.cs",
+      "hash": "54257145FCF6125197EF975D20584181E36E248AA302525EAB217B7C21A1B4F1"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/FixPreview.cs",
+      "hash": "9A6090CE1FEFD40E89943CDC8D1554DC5E53460CFC2D5D29B5B231F249C43EE4"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/InspectUnity.cs",
+      "hash": "5F11AE59CCA4E7E19E9EC3C29293CC483E02082AA680EA71B83571CB2C479A58"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/ReviewFriend.cs",
+      "hash": "948213C6D12F14AD7CAA55A7B82E0D0D0AF159CF10B270E14881DF7D89CDD542"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/RuntimeFriendReview.cs",
+      "hash": "F6491C4884CA1032C1B342CEA892973F6469D2CE5EE5FA507D16D0A6BBDAB542"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendIntegration~/source_inspect.log",
+      "hash": "D401999120F2FFF67E99E9C4ADE568CC8A050B980056379E6209C42EC1CC0759"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/build.log",
+      "hash": "9131810C3628358402A7330A7564000EB2DF4537DD6B3C9F838F3F6A6FAE7D75"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/build_friend_v2.py",
+      "hash": "2E4EBF7C99D96F572465D8F8FD373D16DB61744A3B211F00867197C54D244E78"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Build_Validation.json",
+      "hash": "C7E0F9E2731D2D8EA25B6DDF82FA62EC00542E525AC4FA6A488B9868ACBAC133"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/check_leg_lines.py",
+      "hash": "4C18CF161E23D6EC39104206161074613CC8242E0A085D2469088B0246CE6411"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/README_친구캐릭터.txt",
+      "hash": "000A4BFC7C4D4B9E41980AF25DF43B584BEC85DC3EEF1B1F2104C8F84B003DB1"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_Back.png",
+      "hash": "2B6EE5D567797B0F29A37149A93F66A949EC764B025B7CD1E63BA04BA9AD06DA"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_Back_ThreeQuarter.png",
+      "hash": "2CA3413B92D21F72D72262ABF76CDB37B9E65E928FECA294992297112E3932E0"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_Front.png",
+      "hash": "B6C32357EB13CC12A6EE600ED18089C263AFD6B24B0DDF9A7F9EE81B6FF650F8"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_Hero.png",
+      "hash": "A9C855988F66B0DD867A2AAC6B80F284CBE419AE374A893B37D90DB0F5838F30"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_ReferenceV2.blend",
+      "hash": "8A16A424A265214BE34D6FB551869A7A749BBCBD7D1693600CCD90073FF384D4"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_ReferenceV2.blend1",
+      "hash": "8A31EA935D2175C5E6BE5239B5D737235E879B2CE9C9F2F475BD99624BB97C6F"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Delivery/Wait_Friend_Side.png",
+      "hash": "825D2ECFFBA06C589BDEDBD26E0EEDC937BC47FA163DCEC0EDEFFDE9DEB58B03"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/finish.log",
+      "hash": "90699584CBBCF97288C25976FA66756C9212803AF3A510A321EA853823A2605C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/finish_and_review.py",
+      "hash": "12B266DF5C5E6D214413BA438D0B5D7A43ECA086D0649FAEC47EAB6F6D4ADB9D"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/lines_check.log",
+      "hash": "41D862FEE79239D6C3C24A4B60C791E16FB14D4022B177AFFB8202A400B543A0"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/polish.log",
+      "hash": "3F1160D1C23C8036B1D745A310DD54FCDBF57DBFE13AA42DA4733386D758467F"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/polish_outlines.py",
+      "hash": "E287ECBE9AECED0DB3593CD446CBE4EB063EC92F8F13A056556C5D2DAFD85E13"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Reopen_Validation.json",
+      "hash": "CA41236EC2DDECDBABBD10635AEB55B657C24FDA04B55F8DC0317AEC4BA8A80D"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/Test_LegOutlinesOff.png",
+      "hash": "108F5056587773AD73E9A0420240D22EC998B55431E6DDCC92D47AB25B1AAB95"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/verify.log",
+      "hash": "C8362EA9C670B0EC08EE3FA5ED52E2825B74D9ED63AA47DD9FC509079EDD2A6C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReferenceV2~/verify_friend_v2.py",
+      "hash": "40B754E82F42BFD881DE480471E44D33EC760D52EA3EF15737AEC471A610DCE6"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview.meta",
+      "hash": "41D7AB0DB3E83EBF039D9B23F5EBC41A71FE6DCC7FB69AC1A906FC9193F0FEF8"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Fall_0.55.png",
+      "hash": "A63C725BDE476507B46E70BF539D1E32ECA7D43D6C1C68A59C3E67E41BF16D71"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Fall_0.55.png.meta",
+      "hash": "114FB9EEFE16A0F863C987664C8AF3E0D8105F7A3E85CC07C95F7E2B33096736"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Fall_1.40.png",
+      "hash": "158F0BA02998A5518DF517AB0323313ACBF5ED8534CCEBD5E38B3BE90386F8F2"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Fall_1.40.png.meta",
+      "hash": "B3530538763078373C7889CA302A3FE3ACBBFA3C3ADD4328A90237355538C204"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Final_Validation.json",
+      "hash": "EA509BA3A4C140966C813C50D28CC3DFA95AE6AACC3F8C765DE967E6CDDF212A"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Final_Validation.json.meta",
+      "hash": "F407E9204BB7DFFB2CBF63CEBB335C0D96B4842407F51DA53C85240054A3F7B2"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Idle_0.20.png",
+      "hash": "95F840296117ABE656C7CD8352AAD2D90C0E1389F9426F62B39CD1A1EA9B0654"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Idle_0.20.png.meta",
+      "hash": "01693DCC41D79987AE1B07A2135B57F08342D969E6F724DF9217D7BADA2A494C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Preview_Fall.png",
+      "hash": "DFF2E2A8EC628D4DE00A44AA707085BDD2EC51D8AE4F41B16F6DE63E0078EA3B"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Preview_Fall.png.meta",
+      "hash": "12B3C16237CC2268D5113758169030DC8D7FE0E610F99F6C1EAAFEFA18840AC3"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Preview_Walk.png",
+      "hash": "D4EA2B7C100256EB1CE89FF9EA668AC63B06A5864B9786A71036BB472B7F654C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Preview_Walk.png.meta",
+      "hash": "7F0889A0887D93E23480BAE98CF0CC5C025AE8DF4685ACCE87CC843609054916"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Preview.json",
+      "hash": "EEC9BDC6104FB95F471474FFE2745FB24B8D54FD6778BF294C119F965E6F8130"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Preview.json.meta",
+      "hash": "F52A1D2A5F160400A82677CF602177ACC2989631AE6218ABDCAE9631ED078E13"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Preview.png",
+      "hash": "C030B00E561B09C61632DFD4FC8665F20318E404C5EFCC4359A84E0C57909687"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Preview.png.meta",
+      "hash": "DBF24077ED8173E730BF4C50A0777D064ACEA4D2FE853BB4C28B9F9E65FD2E7E"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Reward.json",
+      "hash": "F94D8EA3871F12A13F1C8D1380A4C357EC78F07E729BF47B212FB233E6D19DD1"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_Reward.json.meta",
+      "hash": "CA17DBDD5819F53C81657F2060FF40BF01133945A38BB1460E26215D2E17DDFF"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_SafeMotion.json",
+      "hash": "7CD736594C9541C330BEDAB09573E9C552CE91CDECBC5F415CD8A1A5880501AF"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_SafeMotion.json.meta",
+      "hash": "E6ED9F80C11D8BB953E0D705509F3E6B4ED786E42AC03358BBA7FC5CA9881CE5"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_UnsafeExplanation.json",
+      "hash": "64D7BAF70E83CFA9A4A621AEF2A226F9D54DC27B957EA91FFEF073E922C4279E"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_UnsafeExplanation.json.meta",
+      "hash": "D25587A3C0409B701A3F46AA8FC4BE820F5B42793000611687D75C550C0836CA"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_UnsafeMotion.json",
+      "hash": "8F7673D138ACA8763D3C172FE01E596244A02C55DC7E0DEE201C69227BF3C9C4"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Runtime_UnsafeMotion.json.meta",
+      "hash": "DEF4FF4AB0A8D174A55BB95983333E32FB293E9FCC7178A63E549CFC00E061FC"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Story_Fall.png",
+      "hash": "B4204CD495D7A092A81E6B65439D20CC4D373BDB9521736B5BF5E03DC1F07BF6"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Story_Fall.png.meta",
+      "hash": "38284DE5FC8EE1EF78350F39A04C90BAD7CFB25D467A3BE1094E9814CF53898D"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Story_Walk.png",
+      "hash": "B98C5B94468E9D0F5E6C14594F6E09D1592A9EFF471DE5D25834196562B4A787"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Story_Walk.png.meta",
+      "hash": "196DC37EE889F1A14E63A9665A960E50046014DBB560F6B7FE49E9C35B0F716B"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Validation.json",
+      "hash": "108848D38AA1A331DEF551844B6321FFE8DCFE78B262A02451A5A7BFD122BE3B"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Validation.json.meta",
+      "hash": "D6A0FA95CF1ED9E758ED7267ABB325E6F644163ADCFABFC65227864C622210F7"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Walk_0.18.png",
+      "hash": "8D9D824DBCBF9A884B3F6BB184BAD991ABF497708619C0125542B1766DF40867"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Walk_0.18.png.meta",
+      "hash": "0CE1BE500E320171DDBEA91C042629878DCCFA8A9DD43C25650C2CDC71EEB426"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Walk_0.54.png",
+      "hash": "8D9D824DBCBF9A884B3F6BB184BAD991ABF497708619C0125542B1766DF40867"
+    },
+    {
+      "path": "Assets/M/CodexTemp/FriendReview/Walk_0.54.png.meta",
+      "hash": "79D299FCEDF092A5956614CC2F916846E4DBC1E7E961EF9B5450CF13F644F951"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.image-validation.json",
+      "hash": "9034E2D94128F56DB414C775EA815E31F628F5832310E422DE866CA444722C16"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.image-validation.json.meta",
+      "hash": "943868E976E32B2B28D0207AB7549A02B02F4976C811785A7E05FD420EF257DB"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.prompt.txt",
+      "hash": "DD6559ACF9F26C962AC84FD34071EDDC4F5442A98AD2BE9F67AC1BEE14768E6F"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.prompt.txt.meta",
+      "hash": "5D98A8157C846B2DF140D36431C4201A54B1C546D5176EE724080CAC500FFCCA"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.seam-edit.prompt.txt",
+      "hash": "7E666169AB01545BB9710708C2786472749550138C7842170F39095ADC3B3586"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.seam-edit.prompt.txt.meta",
+      "hash": "0148366232E0C6782B7C84FEFACCA8E32E0D88AF198E9677CBC038489E256D8A"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.taller-edit.prompt.txt",
+      "hash": "9FB42985FE0540443407F4856113B7C88B53BB3472DC7574F17331F2262DE51E"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_City_1024.taller-edit.prompt.txt.meta",
+      "hash": "F9A5B11CB9164B904137625164FB89BDC326F0D2CBB0CAB586DD70F6131287F7"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_Day_1024.image-validation.json",
+      "hash": "5514E5B59AD0D5BF47E50A04C279A16B22F07CE00AE5BDC4AA9380D2B7BECE3D"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_Day_1024.image-validation.json.meta",
+      "hash": "D11102EA5B58302F7154997846AE7FA6CDB19EF54E6DE31683FCA9F82FDB8BF2"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_Day_1024.prompt.txt",
+      "hash": "50FCD5666C1C0928FBE13C5F57CE91546BFB69568064EFF80F29F9C5C257631C"
+    },
+    {
+      "path": "Assets/M/CodexTemp/Skybox_Storybook_Day_1024.prompt.txt.meta",
+      "hash": "027EEC0206D72068601D038B991F6B4642BC0C9B8C6C0CDC2AB3D2DA2B1B4ED9"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview.meta",
+      "hash": "E1D71F199FB49ECDEB2B9917B3D23CCAAE87AD7F534F9FB41CE7310593151929"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Preview.unity",
+      "hash": "AB7F860F79FC135AE21008A10FC2CCB740C8490CC2BFE0C610F1FE86D696B3A2"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Preview.unity.meta",
+      "hash": "E38EFD4FAE893A8BCFAF7BC8B20E30D9460E65975B02FD70343736ED600190EB"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/PreviewSkybox.mat",
+      "hash": "BC8B7AF4CCD2C2D45E9AC8D91BE7135F2524C60B3C8BF28153F535D717E31E32"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/PreviewSkybox.mat.meta",
+      "hash": "CEFA2C5584EA77E015B303FFEF0ECAEC94D6BA8A4E88B765D2B4E473830F8B10"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/SeamValidation.json",
+      "hash": "BA1A1ADAA88C5A61AFF664658D92BD4D23C8EED7DE223211457A5571A5A218B0"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/SeamValidation.json.meta",
+      "hash": "BE32BC5106AF262D82E16BA8814EAC4E659379225AF8FB772882CC3132B84546"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Skybox_Views.png",
+      "hash": "11EE24C4AA8DF6DCD8516C1E56DB951C07AA1177E2BD88E421C8ECA25F829A43"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Skybox_Views.png.meta",
+      "hash": "D641E730C5218F9DCE47F11C9E6B6CACF15E518E45E6AA8C3C6995E762600793"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Validation.json",
+      "hash": "315B5F321E00B1A1BDD6B4ABF9E274CBFA9B0C0C41AB11994F88641BAA10EA8B"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/Validation.json.meta",
+      "hash": "53B923D965AF8A3272A5ABE1D040D18AF4F4035B3BB2EF6A1A1BF20E4DB52ED9"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/WrapSeam_4x.png",
+      "hash": "06B00856DFE28FB044433BD9F2AD19E29E3B36C65B83B3B40AED43EB783B6715"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxCityReview/WrapSeam_4x.png.meta",
+      "hash": "DA3559A84E2D9F23FC03F574B9D0E191A60C00FF1BB44363204B1B1A2D4E8A25"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxReview~/FinalizePanorama.ps1",
+      "hash": "548BC2C871A52D94A9B49D79A737DB2A8966CC18FE92B8BCA5D74EB822EAB1CE"
+    },
+    {
+      "path": "Assets/M/CodexTemp/SkyboxReview~/ReviewSkybox.cs",
+      "hash": "4328E0E19C90AE1C0AEF35B54358A0A7086FB000E3E5DFE1F7C052C5692A1799"
+    }
+  ]
+}
